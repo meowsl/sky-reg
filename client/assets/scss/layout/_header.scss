@@ -1,1 +1,15 @@
 @charset 'UTF-8';
+
+
+.app-bar{
+
+  &__name{
+    font-size: 45px !important;
+    line-height: 0.8;
+    color: #003434 !important;
+  }
+  &__description{
+    color: #008080 !important;
+    line-height: 1.25 !important;
+  }
+}
