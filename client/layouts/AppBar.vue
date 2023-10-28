@@ -27,7 +27,7 @@
           <NuxtLink to="/">
             <VImg
               :src="icon"
-              min-width="70"
+              min-width="60"
             />
           </NuxtLink>
         </VCol>

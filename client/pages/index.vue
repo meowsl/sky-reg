@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <AppExample />
+    <TableApplications />
   </div>
 </template>
 
