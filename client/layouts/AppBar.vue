@@ -1,6 +1,6 @@
 <template>
   <VAppBar
-    elevation="0"
+    elevation="1"
     class="app-bar d-flex justify-center py-2"
     height="100"
   >
@@ -24,12 +24,12 @@
           cols="6"
           class="d-flex align-center justify-end"
         >
-          <NuxtLink to="/">
+          <VBtn icon>
             <VImg
               :src="icon"
               min-width="60"
             />
-          </NuxtLink>
+          </VBtn>
         </VCol>
       </VRow>
     </VContainer>

@@ -6,21 +6,21 @@
   >
     <thead>
       <tr>
-        <th class="text-left">
+        <th class="text-left ps-0">
           №
 
         </th>
 
-        <th class="text-left">
+        <th class="text-left ps-0">
           Дата обращения
         </th>
-        <th class="text-left">
+        <th class="text-left ps-0">
           Номер
         </th>
-        <th class="text-left">
+        <th class="text-left ps-0">
           ФИО
         </th>
-        <th class="text-left">
+        <th class="text-left ps-0">
           Тип приема
         </th>
       </tr>
@@ -30,11 +30,11 @@
         v-for="app in appsList"
         :key="app.id"
       >
-        <td>{{ app?.id }}</td>
-        <td>{{ app?.dateApplication }}</td>
-        <td>{{ app?.phone }}</td>
-        <td>{{ app?.lastName }} {{ app?.firstName }} {{ app?.middleName }}</td>
-        <td>{{ app?.typePriem }}</td>
+        <td class="ps-0">{{ app?.id }}</td>
+        <td class="ps-0">{{ app?.dateApplication }}</td>
+        <td class="ps-0">{{ app?.phone }}</td>
+        <td class="ps-0">{{ app?.lastName }} {{ app?.firstName }} {{ app?.middleName }}</td>
+        <td class="ps-0">{{ app?.typePriem }}</td>
       </tr>
     </tbody>
 

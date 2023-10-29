@@ -4,7 +4,7 @@
     <VLayout class="mt-28">
 
       <NavBlock />
-      <VMain class="px-16 py-12">
+      <VMain class="px-16 py-6">
         <slot />
       </VMain>
     </VLayout>

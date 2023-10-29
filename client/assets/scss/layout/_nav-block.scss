@@ -1,6 +1,13 @@
 @charset 'UTF-8';
 
-.menu{
-  border-radius: none !important;
-  background: linear-gradient(180deg, rgba(77, 184, 175, 0.2001) 0%, rgba(77, 184, 175, 0) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF) !important;
+.menu {
+  border-radius: 0px !important;
+
+  &__block {
+    background: linear-gradient(180deg, rgba(77, 184, 175, 0.2001) 0%, rgba(77, 184, 175, 0) 100%), linear-gradient(0deg, #FFFFFF, #FFFFFF) !important;
+  }
+}
+
+.router-link-active{
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
