@@ -7,12 +7,13 @@
 </template>
 
 <script setup lang="ts">
+import favicon from 'images/favicon.ico'
 useHead({
-  title: 'РГЭУ (РИНХ)',
+  title: 'SKY-REG',
   link: [
     {
       rel: 'icon',
-      href: '/static/favicon.ico',
+      href: favicon,
     },
   ],
 })

@@ -1,10 +1,10 @@
 <template>
   <VLayout>
     <AppBar />
-    <VLayout class="mt-28">
+    <VLayout class="mt-28 h-auto">
 
       <NavBlock />
-      <VMain class="px-16 py-6">
+      <VMain class="all-pages px-16 py-6">
         <slot />
       </VMain>
     </VLayout>
@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-// import rsueLogo from 'images/rsue_logo.svg'
 import NavBlock from './NavBlock.vue'
 import AppBar from './AppBar.vue'
 </script>
