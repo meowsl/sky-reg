@@ -23,14 +23,7 @@ https://github.com/pyenv-win/pyenv-win
 pyenv install 3.10.0
 pyenv global 3.10.0
 ~~~
-### Установка pyenv
-~~~
-https://github.com/pyenv-win/pyenv-win
-~~~
-~~~
-pyenv install 3.10.0
-pyenv global 3.10.0
-~~~
+
 ### Установка poetry (PowerShell)
 ~~~
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
