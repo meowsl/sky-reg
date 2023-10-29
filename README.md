@@ -46,6 +46,7 @@ https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
 ------------
 Запуск установки
 ~~~
+poetry update
 make install
 ~~~
 После
