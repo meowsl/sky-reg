@@ -7,7 +7,8 @@
       "@pinia/nuxt",
       "vuetify",
       "@nuxt/types",
-      "@nuxtjs/axios"
+      "@nuxtjs/axios",
+      "@samk-dev/nuxt-vcalendar",
     ]
   }
 }

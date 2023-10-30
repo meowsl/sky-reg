@@ -43,6 +43,7 @@
 
 <script setup lang="ts">
 import { Applications } from 'models/applications'
+
 const { $api } = useNuxtApp()
 const appsList = ref<Applications[]>([])
 const getApps = async () => {
