@@ -4,6 +4,8 @@
     <div class="mt-6 d-flex justify-center align-center">
       <client-only>
         <VDatePicker
+          :min-date="new Date()"
+          trim-weeks
           class="vc"
           v-model="date"
           :attributes="attrs"
@@ -24,7 +26,9 @@ const attrs = ref([
       color: 'green',
       fillMode: 'solid'
     },
-    dates: new Date()
+    dates: new Date(),
+
+
   }
 ])
 </script>

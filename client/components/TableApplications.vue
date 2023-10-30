@@ -1,26 +1,26 @@
 <template>
   <VTable
+    class="table"
     fixed-header
     height="300px"
-    theme="white"
   >
     <thead>
       <tr>
-        <th class="text-left ps-0">
+        <th class="table__text-left ps-0">
           №
 
         </th>
 
-        <th class="text-left ps-0">
+        <th class="table__text-left ps-0">
           Дата обращения
         </th>
-        <th class="text-left ps-0">
+        <th class="table__text-left ps-0">
           Номер
         </th>
-        <th class="text-left ps-0">
+        <th class="table__text-left ps-0">
           ФИО
         </th>
-        <th class="text-left ps-0">
+        <th class="table__text-left ps-0">
           Тип приема
         </th>
       </tr>

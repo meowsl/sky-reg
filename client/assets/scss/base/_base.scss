@@ -53,7 +53,6 @@ body {
 
 }
 .vc-title{
-  background-color: #fff !important;
   font-size: 24px !important;
 }
 .vc-weekday{
@@ -79,7 +78,7 @@ body {
   font-size: 20px !important;
 }
 .vc-monthly .is-not-in-month *{
-  opacity: 0.3 !important;
+  opacity: 0.2 !important;
 }
 .vc-highlight-bg-solid{
   background-color: rgba(77, 184, 175, 0.5) !important;
@@ -87,7 +86,6 @@ body {
   height: 100% !important;
 }
 .vc-green > .vc-highlight-bg-solid{
-  background-color: rgba(0, 209, 192, 0.595) !important;
-  width: 100% !important;
+  width: 100% !important;  background-color: rgba(0, 209, 192, 0.595) !important;
   height: 100% !important;
 }
