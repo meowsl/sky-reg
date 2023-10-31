@@ -18,6 +18,12 @@
         >
           <p class="nav-text">Расписание</p>
         </NuxtLink>
+        <NuxtLink
+          to="/cabinets-page"
+          class="bg-white d-flex align-center justify-center  text-h6 mt-1"
+        >
+          <p class="nav-text">Кабинеты</p>
+        </NuxtLink>
       </nav>
     </VNavigationDrawer>
     <v-main style="height: 250px"></v-main>
