@@ -32,6 +32,13 @@ body {
 }
 // Настройка для календаря
 
+.vc-week, .vc-weekdays{
+  display: flex !important;
+  justify-content: space-evenly !important;
+}
+.vc-weekdays{
+  padding-bottom: 2%;
+}
 .vc{
   width: 75% !important;
 }

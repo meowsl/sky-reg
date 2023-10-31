@@ -9,9 +9,13 @@
           class="vc"
           v-model="date"
           :attributes="attrs"
+          :popover="popover"
         />
+
       </client-only>
+
     </div>
+
   </div>
 </template>
 
@@ -31,4 +35,8 @@ const attrs = ref([
 
   }
 ])
+const popover = ref({
+  visibility: 'hover',
+  placement: 'right',
+})
 </script>
