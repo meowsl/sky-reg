@@ -1,19 +1,22 @@
 <template>
   <div class="schedule-page">
     <p class="text-h4 font-weight-bold">Расписание</p>
-    <div class="mt-6 d-flex justify-center align-center">
+    <div class="mt-6 d-flex flex-column justify-center align-center">
       <client-only>
         <VDatePicker
           :select-attribute="selectAttribute"
+          :attributes="attrs"
           :min-date="new Date()"
           trim-weeks
           class="vc"
           v-model="date"
-          :attributes="attrs"
+          is-required
           :masks="{ title: 'MMM YYYY', weekdays: 'WW' }"
         />
-
+        <h1>{{ date }}</h1>
       </client-only>
+
+      <VBtn variant="tonal"></VBtn>
 
     </div>
 
