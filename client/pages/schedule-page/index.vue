@@ -13,7 +13,7 @@
           is-required
           :masks="masks"
         />
-        <h1>{{ date }}</h1>
+        <h1>{{ formattedDate }}</h1>
       </client-only>
 
       <VBtn variant="tonal"></VBtn>
@@ -48,14 +48,10 @@ const popover = ref({
   visibility: 'hover',
   placement: 'right',
 })
-
-const customer = reactive({
-  name: 'Nathan Reyes',
-  birthday: '1983-01-21',
-})
-const masks = ref({
-  modelValue: 'YYYY-MM-DD',
-  title: 'MMM YYYY',
-  weekdays: 'WW'
+const formattedDate = computed(() => {
+  const day = date.value.getDate().toString().padStart(2, '0')
+  const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.value.getFullYear()
+  return `${day}.${month}.${year}`
 })
 </script>

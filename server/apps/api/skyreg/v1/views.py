@@ -1,6 +1,6 @@
 from rest_framework import views, generics
-from .serializers import ApplicationsAPI
-from apps.api.skyreg.models import Applications
+from .serializers import ApplicationsAPI, CabinetsAPI
+from apps.api.skyreg.models import Applications, Cabinets
 
 class ApplicationsAPIView(generics.ListAPIView):
   queryset = Applications.objects.all()
@@ -8,4 +8,8 @@ class ApplicationsAPIView(generics.ListAPIView):
 
 class ApplicationsCreateAPIView(generics.CreateAPIView):
   serializers_class = ApplicationsAPI
+
+class CabinetsAPIView(generics.ListAPIView):
+  queryset = Cabinets.objects.all()
+  serializer_class = CabinetsAPI
 
