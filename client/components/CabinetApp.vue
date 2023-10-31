@@ -1,34 +1,45 @@
 <template>
   <div class="cabinets mt-5 d-flex justify-center">
     <div class="cabinet-item d-flex justify-space-between w-50">
-      <div>
-        <VImg
-          :src=cabinet
-          width="60"
-          class="mx-auto"
-        ></VImg>
-        <P>Кабинет 1</P>
-      </div>
-      <div>
-        <VImg
-          :src=cabinet
-          width="60"
-          class="mx-auto"
-        ></VImg>
-        <P>Кабинет 2</P>
-      </div>
-      <div>
-        <VImg
-          :src=cabinet
-          width="60"
-          class="mx-auto"
-        ></VImg>
-        <P>Обучение</P>
+      <h1>{{ formattedDate }}</h1>
+      <div
+        v-for="cab in cabList"
+        :key="cab.id"
+      >
+        <VHover>
+          <template v-slot:default="{ isHovering, props }">
+            <NuxtLink
+              to="/cabinets-page"
+              v-bind="props"
+            >
+              <VImg
+                :src="isHovering ? cabinetOpen : icon"
+                width="60"
+                class="mx-auto"
+              />
+              <p>Кабинет {{ cab?.cabinetNum }}</p>
+            </NuxtLink>
+          </template>
+        </VHover>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import cabinet from 'images/icon-cabinet.png'
+import icon from 'images/icon-cabinet-close.svg'
+import cabinetOpen from 'images/icon-cabinet-open.svg'
+import { Cabinets } from 'models/cabinets'
+import { ref, provide } from 'vue'
+
+const { $api } = useNuxtApp()
+const cabList = ref<Cabinets[]>([])
+
+const date = ref('')
+const updateDate = (newValue) =>
+
+const getCabs = async () => {
+  cabList.value = await $api<Cabinets[]>('skyreg/cabinets/')
+}
+  getCabs()
 </script>

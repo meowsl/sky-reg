@@ -25,6 +25,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+
 const date = ref(new Date())
 const selectAttribute = ref({
   highlight: {
@@ -39,7 +41,7 @@ const attrs = ref([
       color: 'green',
       fillMode: 'solid'
     },
-    dates: new Date(),
+    date: new Date(),
 
   },
 ])
@@ -48,7 +50,7 @@ const popover = ref({
   visibility: 'hover',
   placement: 'right',
 })
-const formattedDate = computed(() => {
+var formattedDate = computed(() => {
   const day = date.value.getDate().toString().padStart(2, '0')
   const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
   const year = date.value.getFullYear()
