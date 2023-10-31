@@ -13,7 +13,7 @@
           is-required
           :masks="{ title: 'MMM YYYY', weekdays: 'WW' }"
         />
-        <h1>{{ date }}</h1>
+        <h1>{{ formattedDate }}</h1>
       </client-only>
 
       <VBtn variant="tonal"></VBtn>
@@ -46,5 +46,11 @@ const attrs = ref([
 const popover = ref({
   visibility: 'hover',
   placement: 'right',
+})
+const formattedDate = computed(() => {
+  const day = date.value.getDate().toString().padStart(2, '0')
+  const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.value.getFullYear()
+  return `${day}.${month}.${year}`
 })
 </script>
