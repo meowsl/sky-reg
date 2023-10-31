@@ -11,7 +11,7 @@
           class="vc"
           v-model="date"
           is-required
-          :masks="{ title: 'MMM YYYY', weekdays: 'WW' }"
+          :masks="masks"
         />
         <h1>{{ date }}</h1>
       </client-only>
@@ -43,8 +43,19 @@ const attrs = ref([
 
   },
 ])
+
 const popover = ref({
   visibility: 'hover',
   placement: 'right',
+})
+
+const customer = reactive({
+  name: 'Nathan Reyes',
+  birthday: '1983-01-21',
+})
+const masks = ref({
+  modelValue: 'YYYY-MM-DD',
+  title: 'MMM YYYY',
+  weekdays: 'WW'
 })
 </script>
