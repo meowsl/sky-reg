@@ -13,17 +13,18 @@
           <p class="nav-text">Заявки</p>
         </NuxtLink>
         <NuxtLink
-          to="/schedule-page"
+          to="/city-page"
           class="bg-white d-flex align-center justify-center  text-h6 mt-1"
         >
           <p class="nav-text">Расписание</p>
         </NuxtLink>
-        <NuxtLink
-          to="/cabinets-page"
+        <!-- <NuxtLink
+          to="/city-page"
           class="bg-white d-flex align-center justify-center  text-h6 mt-1"
         >
-          <p class="nav-text">Кабинеты</p>
-        </NuxtLink>
+          <p class="nav-text">Города</p>
+        </NuxtLink> -->
+
       </nav>
     </VNavigationDrawer>
     <v-main style="height: 250px"></v-main>

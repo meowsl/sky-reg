@@ -1,6 +1,23 @@
 <template>
+  <div class="address-line d-flex flex-row align-center mt-3">
+    <NuxtLink to="/city-page">
+      <VBtn
+        icon
+        variant="outlined"
+        width="35"
+        height="35"
+        class="back-btn d-flex justify-center align-center"
+      >
+        <VImg
+          :src="iconBack"
+          min-width="25"
+          min-height="25"
+        />
+      </VBtn>
+    </NuxtLink>
+    <p class="text-h6 ms-2">Адрес: {{ $route.query.physAddress }}</p>
+  </div>
   <div class="schedule-page">
-    <p class="text-h4 font-weight-bold">Расписание</p>
     <div class="mt-6 d-flex flex-column justify-center align-center">
       <client-only>
         <VDatePicker
@@ -27,6 +44,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import iconBack from 'images/icon-back.svg'
 
 
 const date = ref(new Date())
@@ -48,10 +66,6 @@ const attrs = ref([
   },
 ])
 
-const popover = ref({
-  visibility: 'hover',
-  placement: 'right',
-})
 const formattedDate = computed(() => {
   const day = date.value.getDate().toString().padStart(2, '0')
   const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
@@ -61,15 +75,19 @@ const formattedDate = computed(() => {
 
 const savedFormattedDate = ref('')
 const router = useRouter()
-// Функция для сохранения значения formattedDate
+
 const saveDate = () => {
   savedFormattedDate.value = formattedDate.value
   console.log(savedFormattedDate.value)
   router.push({
     path: '/cabinets-page',
-    query: { formattedDate: savedFormattedDate.value }
+    query: {
+      formattedDate: savedFormattedDate.value,
+    }
   })
 }
+
+const physAddress = defineProps(['physAddress'])
 
 
 </script>
