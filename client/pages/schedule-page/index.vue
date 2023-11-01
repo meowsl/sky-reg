@@ -16,10 +16,12 @@
         <h1>{{ formattedDate }}</h1>
       </client-only>
 
-      <VBtn variant="tonal"></VBtn>
+      <VBtn
+        variant="tonal"
+        @click="saveDate"
+      >ОК</VBtn>
 
     </div>
-
   </div>
 </template>
 
@@ -50,10 +52,24 @@ const popover = ref({
   visibility: 'hover',
   placement: 'right',
 })
-var formattedDate = computed(() => {
+const formattedDate = computed(() => {
   const day = date.value.getDate().toString().padStart(2, '0')
   const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
   const year = date.value.getFullYear()
   return `${day}.${month}.${year}`
 })
+
+const savedFormattedDate = ref('')
+const router = useRouter()
+// Функция для сохранения значения formattedDate
+const saveDate = () => {
+  savedFormattedDate.value = formattedDate.value
+  console.log(savedFormattedDate.value)
+  router.push({
+    path: '/cabinets-page',
+    query: { formattedDate: savedFormattedDate.value }
+  })
+}
+
+
 </script>

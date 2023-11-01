@@ -1,7 +1,7 @@
 <template>
   <div class="cabinets mt-5 d-flex justify-center">
     <div class="cabinet-item d-flex justify-space-between w-50">
-      <h1>{{ formattedDate }}</h1>
+      <h1>{{ $route.query.formattedDate }}</h1>
       <div
         v-for="cab in cabList"
         :key="cab.id"
@@ -35,11 +35,13 @@ import { ref, provide } from 'vue'
 const { $api } = useNuxtApp()
 const cabList = ref<Cabinets[]>([])
 
-const date = ref('')
-const updateDate = (newValue) =>
+
 
 const getCabs = async () => {
   cabList.value = await $api<Cabinets[]>('skyreg/cabinets/')
 }
-  getCabs()
+getCabs()
+
+const { formattedDateProp } = defineProps(['formattedDateProp'])
+console.log(formattedDateProp)
 </script>
