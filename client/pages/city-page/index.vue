@@ -1,9 +1,14 @@
 <template>
-  <div class="d-flex align-center justify-center mt-16">
+  <div class="address-line d-flex flex-row align-center mt-3">
+    <div class="d-flex flex-row justify-start">
+      <p class="text-h6 ms-2 text-green font-weight-bold">Адрес: {{ selCity }}</p>
+    </div>
+  </div>
+  <div class="d-flex align-center justify-center">
     <VContainer>
       <VRow
         v-model="city"
-        class="pa-16 d-flex align-start"
+        class="pa-16   d-flex align-start"
       >
         <VCol
           cols="4"
@@ -63,12 +68,16 @@
     </VContainer>
 
   </div>
-
-  <h1>{{ selCity }}</h1>
-  <VBtn
-    variant="tonal"
-    @click="saveDate"
-  >ОК</VBtn>
+  <div class="d-flex align-center justify-center">
+    <VBtn
+      variant="tonal"
+      color="green"
+      @click="saveDate"
+      class="text-capitalize"
+    >
+      <p class="text-black">Подтвердить</p>
+    </VBtn>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -116,6 +125,7 @@ const saveDate = () => {
     path: '/schedule-page',
     query: {
       physAddress: savedPhysAddress.value,
+      // formattedDate: formattedDate.value,
     },
   })
 }

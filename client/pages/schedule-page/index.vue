@@ -15,7 +15,10 @@
         />
       </VBtn>
     </NuxtLink>
-    <p class="text-h6 ms-2">Адрес: {{ $route.query.physAddress }}</p>
+    <div class="d-flex flex-row justify-start">
+      <p class="text-h6 ms-2">Адрес: {{ $route.query.physAddress }} \/ </p>
+      <p class="text-h6 ms-2 text-green font-weight-bold">Дата: {{ formattedDate }}</p>
+    </div>
   </div>
   <div class="schedule-page">
     <div class="mt-6 d-flex flex-column justify-center align-center">
@@ -30,13 +33,17 @@
           is-required
           :masks="masks"
         />
-        <h1>{{ formattedDate }}</h1>
+        <h1></h1>
       </client-only>
 
       <VBtn
         variant="tonal"
+        color="green"
         @click="saveDate"
-      >ОК</VBtn>
+        class="text-capitalize"
+      >
+        <p class="text-black">Подтвердить</p>
+      </VBtn>
 
     </div>
   </div>
@@ -47,7 +54,8 @@ import { ref } from 'vue'
 import iconBack from 'images/icon-back.svg'
 
 
-const date = ref(new Date())
+const date = ref(new Date()
+)
 const selectAttribute = ref({
   highlight: {
     color: 'teal',
@@ -74,20 +82,22 @@ const formattedDate = computed(() => {
 })
 
 const savedFormattedDate = ref('')
+const savedPhys = ref()
 const router = useRouter()
+
+savedPhys.value = router.currentRoute.value.query.physAddress
 
 const saveDate = () => {
   savedFormattedDate.value = formattedDate.value
-  console.log(savedFormattedDate.value)
+  // savedPhys.value = router.currentRoute.value.query.physAddress
+
   router.push({
     path: '/cabinets-page',
     query: {
       formattedDate: savedFormattedDate.value,
+      physAddress: savedPhys.value,
     }
   })
 }
-
-const physAddress = defineProps(['physAddress'])
-
 
 </script>

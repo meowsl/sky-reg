@@ -15,11 +15,13 @@
         />
       </VBtn>
     </NuxtLink>
-    <p class="text-h5">Адрес: {{ $route.query.physAddress }} / </p>
-    <p class="text-h5">Дата: {{ $route.query.formattedDate }}</p>
+    <div class="d-flex flex-row justify-start">
+      <p class="text-h6 ms-2">Адрес: {{ $route.query.physAddress }} \/ </p>
+      <p class="text-h6 ms-2">Дата: {{ $route.query.formattedDate }}</p>
+    </div>
   </div>
 
-  <div class="cabinets mt-5 d-flex justify-center">
+  <div class="cabinets mt-10 d-flex justify-center">
     <div class="cabinet-item d-flex justify-space-between w-50">
       <div
         v-for="cab in cabList"
@@ -63,6 +65,7 @@ const getCabs = async () => {
   cabList.value = await $api<Cabinets[]>('skyreg/cabinets/')
 }
 getCabs()
+
 
 const formattedDateProp = defineProps(['formattedDateProp'])
 
