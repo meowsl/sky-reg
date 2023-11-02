@@ -35,14 +35,14 @@
               v-bind="props"
               class="d-flex flex-column text-capitalize text-capitalize"
             >
-              <NuxtLink to="/cabinets-page">
+              <div class="d-flex flex-column">
                 <VImg
                   :src="isHovering ? cabinetOpen : icon"
                   width="60"
                   class="mx-auto"
                 />
                 <p class="text-black">Кабинет {{ cab?.cabinetNum }}</p>
-              </NuxtLink>
+              </div>
             </VBtn>
           </template>
         </VHover>
@@ -58,15 +58,41 @@ import iconBack from 'images/icon-back.svg'
 import { Cabinets } from 'models/cabinets'
 import { ref } from 'vue'
 
+const names = {
+  Ростов: {
+    name: "rostov"
+  },
+  Краснодар: {
+    name: "krasnodar"
+  },
+  Сочи: {
+    name: "sochi"
+  }
+}
+
+const router = useRouter()
+const savedPhys = ref()
+const addrForApi = ref()
+
+savedPhys.value = router.currentRoute.value.query.physAddress
+
+// Получение url для api
+const nameKeys = Object.keys(names)
+for (const nameKey of nameKeys) {
+  if (nameKey === savedPhys.value.split(',')[0]) {
+    addrForApi.value = names[nameKey].name
+  }
+}
+const strapi = `/${addrForApi.value}-cabinets`
+
+// Получение кабинетов
 const { $api } = useNuxtApp()
 const cabList = ref<Cabinets[]>([])
 
 const getCabs = async () => {
-  cabList.value = await $api<Cabinets[]>('skyreg/cabinets/')
+  cabList.value = await $api<Cabinets[]>(`skyreg${strapi}`)
 }
 getCabs()
 
-
-const formattedDateProp = defineProps(['formattedDateProp'])
 
 </script>

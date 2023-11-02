@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import  ApplicationsAPIView, ApplicationsCreateAPIView, CabinetsAPIView
+from .views import  RNDCabinetsAPIView, KRDCabinetsAPIView, SCHCabinetsAPIView
 
 app_name = "skyreg"
 
 urlpatterns = [
-    path("applications-create/", ApplicationsCreateAPIView.as_view(), name="applicationsCreate"),
-    path("applications/", ApplicationsAPIView.as_view(), name="applications"),
-    path("cabinets/", CabinetsAPIView.as_view(), name="cabinets")
+
+    path("rostov-cabinets/", RNDCabinetsAPIView.as_view(), name="rndcabinets"),
+    path("sochi-cabinets/", SCHCabinetsAPIView.as_view(), name="schcabinets"),
+    path("krasnodar-cabinets/", KRDCabinetsAPIView.as_view(), name="krdcabinets"),
 ]

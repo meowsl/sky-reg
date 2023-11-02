@@ -28,7 +28,8 @@ PROJECT_APPS = [
     "apps.core.main",
     "apps.core.api",
     "apps.api.auth",
-    "apps.api.skyreg"
+    "apps.api.skyreg",
+    "apps.api.personals"
 ]
 
 DEVELOPER_APPS = [

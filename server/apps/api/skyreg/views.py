@@ -1,16 +1,17 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .v1.serializers import ApplicationsAPI, CabinetsAPI
-from .models import Applications, Cabinets
+from .v1.serializers import ApplicationsAPI, RNDCabinetsAPI, KRDCabinetsAPI, SCHCabinetsAPI
+from .models import Applications, RNDCabinets, KRDCabinets, SCHCabinets
 
-class ApplicationsAPIView(generics.ListAPIView):
-  queryset = Applications.objects.all()
-  serializers_class = ApplicationsAPI
 
-class ApplicationsCreateAPIView(generics.CreateAPIView):
-  queryset = Applications.objects.all()
-  serializers_class = ApplicationsAPI
+class RNDCabinetsAPIView(generics.ListAPIView):
+  queryset = RNDCabinets.objects.all()
+  serializer_class = RNDCabinetsAPI
 
-class CabinetsAPIView(generics.ListAPIView):
-  queryset = Cabinets.objects.all()
-  serializer_class = CabinetsAPI
+class KRDCabinetsAPIView(generics.ListAPIView):
+  queryset = KRDCabinets.objects.all()
+  serializer_class = KRDCabinetsAPI
+
+class SCHCabinetsAPIView(generics.ListAPIView):
+  queryset = SCHCabinets.objects.all()
+  serializer_class = SCHCabinetsAPI

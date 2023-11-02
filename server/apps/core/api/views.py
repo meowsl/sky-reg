@@ -19,9 +19,9 @@ class SchemaAPIView(SpectacularAPIView):
         DESCRIPTION=render_to_string("api/desctiption.html"),
         VERSION="1.0.0",
         CONTACT=dict(
-            name="DIGITAL RSUE",
-            url="https://digital.rsue.ru/",
-            email="digital@rsue.ru",
+            name="SKY REG",
+            url="",
+            email="",
         ),
         LICENSE=dict(name="MIT License"),
         SCHEMA_PATH_PREFIX="/api/v[0-9]",

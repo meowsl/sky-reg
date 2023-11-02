@@ -47,7 +47,7 @@ import { Applications } from 'models/applications'
 const { $api } = useNuxtApp()
 const appsList = ref<Applications[]>([])
 const getApps = async () => {
-  appsList.value = await $api<Applications[]>('skyreg/applications/')
+  appsList.value = await $api<Applications[]>('personals/applications/')
 }
 getApps()
 </script>

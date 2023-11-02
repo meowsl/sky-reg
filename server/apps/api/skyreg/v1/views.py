@@ -1,15 +1,17 @@
 from rest_framework import views, generics
-from .serializers import ApplicationsAPI, CabinetsAPI
-from apps.api.skyreg.models import Applications, Cabinets
+from .serializers import RNDCabinetsAPI, KRDCabinetsAPI, SCHCabinetsAPI
+from apps.api.skyreg.models import RNDCabinets, KRDCabinets, SCHCabinets
 
-class ApplicationsAPIView(generics.ListAPIView):
-  queryset = Applications.objects.all()
-  serializer_class = ApplicationsAPI
 
-class ApplicationsCreateAPIView(generics.CreateAPIView):
-  serializers_class = ApplicationsAPI
+class RNDCabinetsAPIView(generics.ListAPIView):
+  queryset = RNDCabinets.objects.all()
+  serializer_class = RNDCabinetsAPI
 
-class CabinetsAPIView(generics.ListAPIView):
-  queryset = Cabinets.objects.all()
-  serializer_class = CabinetsAPI
+class KRDCabinetsAPIView(generics.ListAPIView):
+  queryset = KRDCabinets.objects.all()
+  serializer_class = KRDCabinetsAPI
+
+class SCHCabinetsAPIView(generics.ListAPIView):
+  queryset = SCHCabinets.objects.all()
+  serializer_class = SCHCabinetsAPI
 

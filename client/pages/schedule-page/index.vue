@@ -31,7 +31,7 @@
           class="vc"
           v-model="date"
           is-required
-          :masks="masks"
+          :masks="{ weekdays: 'WW' }"
         />
         <h1></h1>
       </client-only>
