@@ -116,7 +116,12 @@ function changeCity(cit) {
 }
 
 const savedPhysAddress = ref('')
+const savedFio = ref()
+const savedType = ref()
 const router = useRouter()
+
+savedFio.value = router.currentRoute.value.query.fio
+savedType.value = router.currentRoute.value.query.typePriem
 
 const saveDate = () => {
   savedPhysAddress.value = selCity.value
@@ -125,7 +130,8 @@ const saveDate = () => {
     path: '/schedule-page',
     query: {
       physAddress: savedPhysAddress.value,
-      // formattedDate: formattedDate.value,
+      fio: savedFio.value,
+      typePriem: savedType.value,
     },
   })
 }

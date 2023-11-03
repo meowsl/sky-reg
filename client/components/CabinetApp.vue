@@ -49,6 +49,19 @@
       </div>
     </div>
   </div>
+  <div class="mt-16">
+    <h1>Здесь будет время</h1>
+  </div>
+  <div class="client-data mt-10 w-25">
+    <div class="client-info d-flex flex-row text-h6 pa-2 w-100">
+      <p>ID: </p>
+      <p class="ms-4">{{ $route.query.fio }}</p>
+    </div>
+    <div class="client-info d-flex flex-row text-h6 pa-2 w-100 mt-2">
+      <p>Прием: </p>
+      <p class="ms-4">{{ $route.query.typePriem }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

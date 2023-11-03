@@ -83,9 +83,13 @@ const formattedDate = computed(() => {
 
 const savedFormattedDate = ref('')
 const savedPhys = ref()
+const savedFio = ref()
+const savedType = ref()
 const router = useRouter()
 
 savedPhys.value = router.currentRoute.value.query.physAddress
+savedFio.value = router.currentRoute.value.query.fio
+savedType.value = router.currentRoute.value.query.typePriem
 
 const saveDate = () => {
   savedFormattedDate.value = formattedDate.value
@@ -96,6 +100,8 @@ const saveDate = () => {
     query: {
       formattedDate: savedFormattedDate.value,
       physAddress: savedPhys.value,
+      fio: savedFio.value,
+      typePriem: savedType.value
     }
   })
 }
