@@ -32,7 +32,7 @@ useHead({
 const layout = ref("default")
 
 function chooseCustom() {
-  layout.value = "custom"
+  layout.value = "client"
 }
 function chooseDefault() {
   layout.value = "default"

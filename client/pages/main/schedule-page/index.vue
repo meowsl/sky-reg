@@ -53,6 +53,10 @@
 import { ref } from 'vue'
 import iconBack from 'images/icon-back.svg'
 
+definePageMeta({
+  layout: 'default'
+})
+
 
 const date = ref(new Date()
 )

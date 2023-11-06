@@ -83,6 +83,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+definePageMeta({
+  layout: 'default'
+})
+
 const city = ref("Ростов")
 
 const cities = {

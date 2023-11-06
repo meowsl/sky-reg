@@ -4,7 +4,8 @@ from django.utils.translation import gettext_lazy as _
 class Applications(models.Model):
     TYPE_PRIEM =[
       ('Первичный', 'Первичный'),
-      ('Вторичный', 'Вторичный')
+      ('Вторичный', 'Вторичный'),
+      ('Обучение', 'Обучение')
     ]
 
     last_name = models.CharField(
