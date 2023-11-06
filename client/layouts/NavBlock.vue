@@ -7,7 +7,7 @@
     >
       <nav>
         <NuxtLink
-          to="/admin-page"
+          to="/"
           class="bg-white d-flex align-center justify-center  text-h6"
         >
           <p class="nav-text">Заявки</p>

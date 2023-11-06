@@ -1,8 +1,19 @@
 <template>
   <VApp>
-    <NuxtLayout>
+    <NuxtLayout :name="layout">
       <NuxtPage />
+
     </NuxtLayout>
+    <div class="d-flex flex-row justify-center">
+      <VBtn
+        @click="chooseDefault"
+        class="w-25"
+      >Choose admin</VBtn>
+      <VBtn
+        @click="chooseCustom"
+        class="w-25"
+      >Choose client</VBtn>
+    </div>
   </VApp>
 </template>
 
@@ -17,4 +28,14 @@ useHead({
     },
   ],
 })
+
+const layout = ref("default")
+
+function chooseCustom() {
+  layout.value = "custom"
+}
+function chooseDefault() {
+  layout.value = "default"
+}
+
 </script>
