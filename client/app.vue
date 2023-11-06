@@ -5,14 +5,8 @@
 
     </NuxtLayout>
     <div class="d-flex flex-row justify-center">
-      <VBtn
-        @click="chooseDefault"
-        class="w-25"
-      >Choose admin</VBtn>
-      <VBtn
-        @click="chooseCustom"
-        class="w-25"
-      >Choose client</VBtn>
+      <VBtn @click="chooseDefault">Choose Admin</VBtn>
+      <VBtn @click="chooseForms">Choose Client</VBtn>
     </div>
   </VApp>
 </template>
@@ -31,11 +25,19 @@ useHead({
 
 const layout = ref("default")
 
-function chooseCustom() {
-  layout.value = "client"
-}
-function chooseDefault() {
+const router = useRouter()
+
+const chooseDefault = () => {
   layout.value = "default"
+  router.push({
+    path: '/'
+  })
 }
 
+const chooseForms = () => {
+  layout.value = "forms"
+  router.push({
+    path: '/forms/'
+  })
+}
 </script>

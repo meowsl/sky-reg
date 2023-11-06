@@ -12,6 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import NavBlock from './NavBlock.vue'
-import AppBar from './AppBar.vue'
+import NavBlock from '../components/NavBlock.vue'
+import AppBar from '../components/AppBar.vue'
 </script>
