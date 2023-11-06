@@ -12,7 +12,7 @@
       >
         <VCol
           cols="4"
-          class="d-flex flex-column justify-center align-start"
+          class="d-flex flex-column justify-center align-end"
         >
           <div class="city-title d-flex align-center justify-center">
             <p class="text-h6 mt-2">Ростов-на-Дону</p>
@@ -32,7 +32,7 @@
         </VCol>
         <VCol
           cols="4"
-          class="d-flex flex-column justify-center align-start"
+          class="d-flex flex-column justify-center align-center"
         >
           <div class="city-title d-flex align-center justify-center">
             <p class="text-h6 mt-2">Краснодар</p>

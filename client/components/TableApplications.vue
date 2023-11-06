@@ -8,11 +8,12 @@
       <tr>
         <th class="table__text-left ps-0">
           №
-
         </th>
-
         <th class="table__text-left ps-0">
           Дата обращения
+        </th>
+        <th class="table__text-left ps-0">
+          Дата записи
         </th>
         <th class="table__text-left ps-0">
           Номер
@@ -32,6 +33,7 @@
         class=""
       >
         <td class="ps-0">{{ app?.id }}</td>
+        <td class="ps-0">{{ app?.dateApplication }}</td>
         <td class="ps-0">{{ app?.dateApplication }}</td>
         <td class="ps-0">{{ app?.phone }}</td>
         <td class="ps-0">{{ app?.lastName }} {{ app?.firstName }} {{ app?.middleName }}</td>
@@ -87,17 +89,4 @@ function getData(id) {
   })
 }
 
-
-
-// const saveDate = () => {
-//   savedName.value = selName.value
-//   console.log(savedName.value)
-//   router.push({
-//     path: '/city-page',
-//     query: {
-//       fio: savedName.value,
-//       // formattedDate: formattedDate.value,
-//     },
-//   })
-// }
 </script>
