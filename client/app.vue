@@ -4,10 +4,6 @@
       <NuxtPage />
 
     </NuxtLayout>
-    <div class="d-flex flex-row justify-center">
-      <VBtn @click="chooseDefault">Choose Admin</VBtn>
-      <VBtn @click="chooseForms">Choose Client</VBtn>
-    </div>
   </VApp>
 </template>
 
@@ -27,17 +23,4 @@ const layout = ref("default")
 
 const router = useRouter()
 
-const chooseDefault = () => {
-  layout.value = "default"
-  router.push({
-    path: '/'
-  })
-}
-
-const chooseForms = () => {
-  layout.value = "forms"
-  router.push({
-    path: '/forms/'
-  })
-}
 </script>

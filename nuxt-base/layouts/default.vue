@@ -1,6 +1,6 @@
 <template>
   <VLayout>
-    <VMain>
+    <VMain class="w-screen h-screen d-flex align-center">
       <slot />
     </VMain>
   </VLayout>
