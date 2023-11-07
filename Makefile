@@ -4,7 +4,6 @@ run-django-server:
 
 run-nuxt-server:
 	yarn dev --host localhost --port 8080 --open --https --ssl-cert ./localhost.pem --ssl-key ./localhost-key.pem
-	npm run dev
 
 install-backend:
 	poetry install --with dev --no-root
