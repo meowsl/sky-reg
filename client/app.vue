@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import favicon from 'images/favicon.ico'
 useHead({
-  title: 'SKY-REG',
+  title: 'SKY-REG Admin',
   link: [
     {
       rel: 'icon',

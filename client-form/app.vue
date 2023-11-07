@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 useHead({
-  title: 'РГЭУ (РИНХ)',
+  title: 'SKY-REG Client',
   link: [
     {
       rel: 'icon',

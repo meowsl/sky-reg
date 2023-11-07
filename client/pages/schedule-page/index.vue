@@ -33,7 +33,6 @@
           is-required
           :masks="{ weekdays: 'WW' }"
         />
-        <h1></h1>
       </client-only>
 
       <VBtn
@@ -52,11 +51,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import iconBack from 'images/icon-back.svg'
-
-definePageMeta({
-  layout: 'default'
-})
-
 
 const date = ref(new Date()
 )
