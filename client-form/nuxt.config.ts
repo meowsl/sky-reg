@@ -37,6 +37,10 @@ export default defineNuxtConfig({
         ],
       },
     ],
+    [
+      '@samk-dev/nuxt-vcalendar'
+    ],
+
     // vuetify
     async (_, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {

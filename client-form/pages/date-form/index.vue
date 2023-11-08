@@ -10,10 +10,22 @@
       >Записаться на прием</p>
       <VDivider />
     </div>
-    <div class="form__content">
-      <VContainer class="w-50">
-        <p class="text-h6 text-center text-black">Выберите дату и время</p>
-
+    <div class="form__content d-flex flex-column justify-start mt-16 h-75">
+      <p class="text-h6 text-center text-black">Выберите дату и время</p>
+      <VContainer class="w-75 mt-4">
+        <div class="form__content__date-choise d-flex flex-column justify-center align-center">
+          <p>Дата</p>
+          <VDatePicker v-model="date">
+            <template #default="{ inputValue, inputEvents }">
+              <input
+                :value="inputValue"
+                v-on="inputEvents"
+                class="px-2 py-1 bg-white d-flex justify-center"
+                style="border: 1px solid black; height: 2.5rem;"
+              />
+            </template>
+          </VDatePicker>
+        </div>
       </VContainer>
     </div>
     <div class="form__content-foot d-flex flex-column justify-center px-16">
@@ -36,10 +48,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import backArrow from 'images/backArrow.svg'
 
-const fromDateVal = ref()
-const minDate = new Date()
+const menu = false
+const date = ref(new Date())
 
+
+const formattedDate = computed(() => {
+  const day = date.value.getDate().toString().padStart(2, '0')
+  const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.value.getFullYear()
+  return `${day}.${month}.${year}`
+})
 </script>
