@@ -92,7 +92,7 @@ function changeType(tp) {
   selType.value = tp
   router.push({
     path: '/address-form',
-    query: {
+    params: {
       typePriem: selType.value,
     }
   })

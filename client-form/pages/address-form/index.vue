@@ -73,7 +73,7 @@ function saveAddr() {
   savedAddr.value = model.value
   router.push({
     path: '/date-form',
-    query: {
+    params: {
       typePriem: savedType.value,
       addr: savedAddr.value,
     }
