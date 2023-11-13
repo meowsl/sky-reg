@@ -17,9 +17,16 @@
           <VCol cols="6">
             <div class="form__content__date-choise d-flex flex-column justify-center align-center px-16">
               <p>Дата</p>
-              <VExpansionPanels class="mt-4">
+              <VExpansionPanels
+                class="mt-4"
+                static
+                variant="inset"
+              >
                 <VExpansionPanel :title="formattedDate">
-                  <VExpansionPanelText class="">
+                  <VExpansionPanelText
+                    relative
+                    class=""
+                  >
                     <VDatePicker
                       :min-date="new Date()"
                       transparent
@@ -39,8 +46,11 @@
           <VCol cols="6">
             <div class="form__content__time-choise d-flex flex-column justify-center align-center w-100 px-16">
               <p>Время</p>
-              <VExpansionPanels class="mt-4">
-                <VExpansionPanel :title="formattedDate + ' / ' + selTime">
+              <VExpansionPanels
+                class="mt-4"
+                variant="inset"
+              >
+                <VExpansionPanel :title="selTime">
                   <VExpansionPanelText>
                     <div class=" d-flex flex-row flex-wrap justify-center align-center pa-4">
 

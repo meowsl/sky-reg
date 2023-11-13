@@ -1,6 +1,6 @@
 from rest_framework import views, generics
-from .serializers import ApplicationsAPI, PatientsCardsAPI
-from apps.api.personals.models import Applications, PatientsCards
+from .serializers import ApplicationsAPI
+from apps.api.personals.models import Applications
 
 class ApplicationsAPIView(generics.ListAPIView):
   queryset = Applications.objects.all()
@@ -8,7 +8,3 @@ class ApplicationsAPIView(generics.ListAPIView):
 
 class ApplicationsCreateAPIView(generics.CreateAPIView):
   serializers_class = ApplicationsAPI
-
-class PatientsCardsAPIView(generics.ListAPIView):
-  queryset = PatientsCards.objects.all()
-  serializer_class = PatientsCardsAPI
