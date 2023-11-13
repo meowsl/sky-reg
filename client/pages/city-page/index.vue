@@ -23,7 +23,7 @@
               class="text-capitalize"
               v-on:click="changeCity('Rostov')"
             >
-              <p class="text-black">адрес_1</p>
+              <p class="text-black">ул. Обороны, 42Б</p>
             </VBtn>
           </div>
           <div class="end-address d-flex justify-center align-center">
@@ -43,7 +43,7 @@
               class="text-capitalize"
               v-on:click="changeCity('Krasnodar')"
             >
-              <p class="text-black">адрес_2</p>
+              <p class="text-black">ул. Ставропольская, 127</p>
             </VBtn>
           </div>
         </VCol>
@@ -60,7 +60,7 @@
               class="text-capitalize"
               @click="changeCity('Sochi')"
             >
-              <p class="text-black">адрес_3</p>
+              <p class="text-black">ул. Горького, 87</p>
             </VBtn>
           </div>
         </VCol>
@@ -88,15 +88,15 @@ const city = ref("Ростов")
 const cities = {
   Rostov: {
     name: "Ростов",
-    address: "адрес_1"
+    address: "ул. Обороны, 42Б"
   },
   Krasnodar: {
     name: "Краснодар",
-    address: "адрес_2"
+    address: "ул. Ставропольская, 127"
   },
   Sochi: {
     name: "Сочи",
-    address: "адрес_3"
+    address: "ул. Горького, 87"
   }
 }
 

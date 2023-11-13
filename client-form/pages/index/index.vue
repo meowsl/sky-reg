@@ -90,10 +90,12 @@ const selType = ref()
 
 function changeType(tp) {
   selType.value = tp
+  const dataList = []
+  dataList.push(selType.value)
   router.push({
     path: '/address-form',
     query: {
-      typePriem: selType.value,
+      data: dataList,
     }
   })
 }
