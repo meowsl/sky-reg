@@ -38,16 +38,6 @@
         <td class="ps-0">{{ app?.phone }}</td>
         <td class="ps-0">{{ app?.lastName }} {{ app?.firstName }} {{ app?.middleName }}</td>
         <td class="ps-0">{{ app?.typePriem }}</td>
-        <VBtn
-          variant="outline"
-          icon
-          @click="getData(app?.id)"
-        >
-          <VImg
-            :src="Arrow"
-            min-width="30"
-          />
-        </VBtn>
       </tr>
     </tbody>
 

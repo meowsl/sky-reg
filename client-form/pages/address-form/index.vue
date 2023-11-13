@@ -63,19 +63,20 @@ const items = ['Ростов-на-Дону, ул. Обороны, 42Б', 'Кра
 const router = useRouter()
 const savedType = ref()
 
-savedType.value = router.currentRoute.value.query.typePriem
-
+savedType.value = router.currentRoute.value.query.data
 const savedAddr = ref()
 
 const model = ref()
 
 function saveAddr() {
   savedAddr.value = model.value
+  const dataList = []
+  dataList.push(savedType.value, savedAddr.value)
+  alert(dataList)
   router.push({
     path: '/date-form',
-    params: {
-      typePriem: savedType.value,
-      addr: savedAddr.value,
+    query: {
+      data: dataList,
     }
   })
 }
