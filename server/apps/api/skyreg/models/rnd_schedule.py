@@ -40,5 +40,5 @@ class RNDSchedule(models.Model):
     return f'Дата: {date} / Тип приема: {typePriem}'
 
   class Meta:
-    verbose_name=_("Расписание, Краснодар")
-    verbose_name_plural=_("Расписание, Краснодар")
+    verbose_name=_("Расписание, Ростов-на-Дону")
+    verbose_name_plural=_("Расписание, Ростов-на-Дону")

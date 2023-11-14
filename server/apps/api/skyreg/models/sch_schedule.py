@@ -40,5 +40,5 @@ class SCHSchedule(models.Model):
     return f'Дата: {date} / Тип приема: {typePriem}'
 
   class Meta:
-    verbose_name=_("Расписание, Краснодар")
-    verbose_name_plural=_("Расписание, Краснодар")
+    verbose_name=_("Расписание, Сочи")
+    verbose_name_plural=_("Расписание, Сочи")
