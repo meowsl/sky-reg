@@ -56,8 +56,9 @@
 
                       <VBtn
                         variant="tonal"
-                        v-for=" item  in  DepartTime "
+                        v-for=" item in DepartTime"
                         @click="selTime = item"
+                        :disabled="!isTimeSlotAvailable(item)"
                         class="mx-2 my-2"
                       >{{ item }}</VBtn>
                     </div>
@@ -91,12 +92,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import backArrow from 'images/backArrow.svg'
-
+import { Schedules } from 'models/schedules'
 
 const date = ref(new Date())
 const selTime = ref('10:00')
+const { $api } = useNuxtApp()
+const scheduleList = ref<Schedules[]>([])
 
 const formattedDate = computed(() => {
   const day = date.value.getDate().toString().padStart(2, '0')
@@ -105,7 +108,26 @@ const formattedDate = computed(() => {
   return `${day}.${month}.${year}`
 })
 
-const DepartTime = []
+const checkAvailability = async () => {
+  try {
+    scheduleList.value = await $api<Schedules[]>(`/skyreg/schedule/krasnodar`)
+  } catch (error) {
+    console.error('Ошибка при получении данных', error)
+  }
+}
+
+const isTimeSlotAvailable = (time: string): boolean => {
+  const busyTimes = scheduleList.value
+    .filter(entry => entry.date === formattedDate.value)
+    .map(entry => entry.time)
+  return !busyTimes.includes(time)
+}
+
+watchEffect(() => {
+  checkAvailability()
+})
+
+let DepartTime = []
 for (let i = 20; i <= 37; i++) {
   let hour = Math.floor(i / 2)
   let minute = (i % 2 === 0) ? '00' : '30'
