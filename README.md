@@ -1,4 +1,5 @@
-Sky-Reg
+
+# Sky-Reg
 
 Установка необходимых утилит (Windows)
 ------------
@@ -49,8 +50,15 @@ https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer
 poetry update
 make install
 ~~~
-После
+Запуск Sky-Reg Client
+~~~
+cd client-form/
+yard run dev
+~~~
+
+Запуск Sky-Reg Admin
 ~~~
 make run
 ~~~
+
 ------------
