@@ -1,5 +1,5 @@
 export interface Cabinets{
   id: number;
-  cabinetFloor: number;
-  cabinetNum: number;
+  city: string;
+  num: number;
 }

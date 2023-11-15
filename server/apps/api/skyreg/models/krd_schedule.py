@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from .krd_cabinets import KRDCabinets
 
 class KRDSchedule(models.Model):
 
@@ -57,13 +56,6 @@ class KRDSchedule(models.Model):
     blank=False,
     null=True,
     verbose_name=_("Тип приема")
-  )
-
-  cabinet = models.ForeignKey(
-    KRDCabinets,
-    null=True,
-    verbose_name=_("Кабинет"),
-    on_delete=models.CASCADE,
   )
 
   def __str__(self):

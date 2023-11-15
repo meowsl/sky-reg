@@ -1,28 +1,10 @@
 from rest_framework import serializers
 from apps.api.skyreg.models import (
-  RNDCabinets,
-  KRDCabinets,
-  SCHCabinets,
   KRDSchedule,
   RNDSchedule,
   SCHSchedule,
   Cabinets)
 
-# Кабинеты
-class RNDCabinetsAPI(serializers.ModelSerializer):
-  class Meta:
-    model = RNDCabinets
-    fields = "__all__"
-
-class KRDCabinetsAPI(serializers.ModelSerializer):
-  class Meta:
-    model = KRDCabinets
-    fields = "__all__"
-
-class SCHCabinetsAPI(serializers.ModelSerializer):
-  class Meta:
-    model = SCHCabinets
-    fields = "__all__"
 
 # Расписание
 class KRDScheduleAPI(serializers.ModelSerializer):
@@ -41,6 +23,7 @@ class SCHScheduleAPI(serializers.ModelSerializer):
     fields = "__all__"
 
 class CabinetsAPI(serializers.ModelSerializer):
+  city = serializers.CharField(source='get_city_display', read_only=True)
   class Meta:
     model = Cabinets
     fields = "__all__"
