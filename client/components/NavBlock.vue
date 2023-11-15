@@ -14,9 +14,15 @@
         </NuxtLink>
         <NuxtLink
           to="/city-page"
-          class="bg-white d-flex align-center justify-center  text-h6 mt-1"
+          class="bg-white d-flex align-center justify-center text-h6 mt-1"
         >
           <p class="nav-text">Расписание</p>
+        </NuxtLink>
+        <NuxtLink
+          to="/create-page"
+          class="bg-white d-flex align-center justify-center text-h6 mt-1"
+        >
+          <p class="nav-text">Создать запись</p>
         </NuxtLink>
       </nav>
     </VNavigationDrawer>

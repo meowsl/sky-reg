@@ -1,6 +1,6 @@
 <template>
   <div class="cabinets-page">
-    <CabinetApp />
+    <!--  -->
   </div>
 </template>
 

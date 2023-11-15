@@ -72,7 +72,6 @@ function saveAddr() {
   savedAddr.value = model.value
   const dataList = []
   dataList.push(savedType.value, savedAddr.value)
-  alert(dataList)
   router.push({
     path: '/date-form',
     query: {

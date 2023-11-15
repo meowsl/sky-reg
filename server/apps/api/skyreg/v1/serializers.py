@@ -5,9 +5,10 @@ from apps.api.skyreg.models import (
   SCHCabinets,
   KRDSchedule,
   RNDSchedule,
-  SCHSchedule)
+  SCHSchedule,
+  Cabinets)
 
-
+# Кабинеты
 class RNDCabinetsAPI(serializers.ModelSerializer):
   class Meta:
     model = RNDCabinets
@@ -23,6 +24,7 @@ class SCHCabinetsAPI(serializers.ModelSerializer):
     model = SCHCabinets
     fields = "__all__"
 
+# Расписание
 class KRDScheduleAPI(serializers.ModelSerializer):
   class Meta:
     model = KRDSchedule
@@ -36,4 +38,9 @@ class RNDScheduleAPI(serializers.ModelSerializer):
 class SCHScheduleAPI(serializers.ModelSerializer):
   class Meta:
     model = SCHSchedule
+    fields = "__all__"
+
+class CabinetsAPI(serializers.ModelSerializer):
+  class Meta:
+    model = Cabinets
     fields = "__all__"

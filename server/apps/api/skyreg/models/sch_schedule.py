@@ -9,6 +9,28 @@ class SCHSchedule(models.Model):
     SECONDARY = 2, _("Вторичный")
     LEARN = 3, _("Обучение")
 
+  TIMES = (
+    ('10:00','10:00'),
+    ('10:30','10:30'),
+    ("11:00","11:00"),
+    ("11:30","11:30"),
+    ("12:00","12:00"),
+    ("12:30","12:30"),
+    ("13:00","13:00"),
+    ("13:30","13:30"),
+    ("14:00","14:00"),
+    ("14:30","14:30"),
+    ("15:00","15:00"),
+    ("15:30","15:30"),
+    ("16:00","16:00"),
+    ("16:30","16:30"),
+    ("17:00","17:00"),
+    ("17:30","17:30"),
+    ("18:00","18:00"),
+    ("18:30","18:30"),
+  )
+
+
   client = models.CharField(
     max_length=150,
     blank=False,
@@ -20,6 +42,14 @@ class SCHSchedule(models.Model):
     blank = False,
     default = None,
     verbose_name = _('Дата записи ')
+  )
+
+  time = models.CharField(
+    max_length=5,
+    choices=TIMES,
+    blank=False,
+    null=True,
+    verbose_name=_("Время")
   )
 
   typePriem = models.PositiveIntegerField(
@@ -37,7 +67,7 @@ class SCHSchedule(models.Model):
   )
 
   def __str__(self):
-    return f'Дата: {date} / Тип приема: {typePriem}'
+    return f'Дата: {self.date} / Тип приема: {self.typePriem}'
 
   class Meta:
     verbose_name=_("Расписание, Сочи")

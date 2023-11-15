@@ -53,7 +53,7 @@ const { $api } = useNuxtApp()
 
 const appsList = ref<Applications[]>([])
 const getApps = async () => {
-  appsList.value = await $api<Applications[]>('personals/applications/')
+  appsList.value = await $api<Applications[]>('personals/applications/list/')
   // alert(JSON.stringify(appsList.value[0]['id']))
 }
 getApps()

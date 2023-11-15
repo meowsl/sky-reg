@@ -6,7 +6,8 @@ from .models import (
   SCHCabinets,
   KRDSchedule,
   RNDSchedule,
-  SCHSchedule)
+  SCHSchedule,
+  Cabinets)
 
 # Ростов-на-Дону
 @admin.register(RNDCabinets)
@@ -35,6 +36,8 @@ class SCHCabinetsAdmin(admin.ModelAdmin):
 class SCHScheduleAdmin(admin.ModelAdmin):
   list_display = ("date",)
 
-
+@admin.register(Cabinets)
+class CabinetsAdmin(admin.ModelAdmin):
+  list_display = ('city', 'num')
 
 
