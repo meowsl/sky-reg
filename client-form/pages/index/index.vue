@@ -80,7 +80,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Applications } from '../models/applications'
+// import { Applications } from '../models/applications'
 import firstImg from 'images/firstImg.svg'
 import secondImg from 'images/secondImg.svg'
 import learnImg from 'images/learnImg.svg'
@@ -90,12 +90,10 @@ const selType = ref()
 
 function changeType(tp) {
   selType.value = tp
-  const dataList = []
-  dataList.push(selType.value)
   router.push({
     path: '/address-form',
     query: {
-      data: dataList,
+      type: selType.value,
     }
   })
 }

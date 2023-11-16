@@ -48,6 +48,7 @@ class SCHSchedule(models.Model):
     choices=TIMES,
     blank=False,
     null=True,
+    unique=True,
     verbose_name=_("Время")
   )
 

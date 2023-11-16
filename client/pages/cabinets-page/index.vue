@@ -14,6 +14,7 @@
 <script lang="ts" setup>
 import { Cabinets } from 'models/cabinets'
 import { ref } from 'vue'
+
 const { $api } = useNuxtApp()
 const cabList = ref<Cabinets[]>([])
 const getCabs = async () => {
