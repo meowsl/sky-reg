@@ -94,16 +94,16 @@ const router = useRouter()
 
 
 const fuckingType = ref()
-fuckingType.value = router.currentRoute.value.query.type
+fuckingType.value = <string>router.currentRoute.value.query.type
 
 const fuckingCity = ref()
-fuckingCity.value = router.currentRoute.value.query.city
+fuckingCity.value = <string>router.currentRoute.value.query.city
 
 const fuckingDate = ref()
-fuckingDate.value = router.currentRoute.value.query.date
+fuckingDate.value = <string>router.currentRoute.value.query.date
 
 const fuckingTime = ref()
-fuckingTime.value = router.currentRoute.value.query.time
+fuckingTime.value = <string>router.currentRoute.value.query.time
 
 
 const { $api } = useNuxtApp()
@@ -113,7 +113,7 @@ const initialState = {
   lastName: '',
   phone: '',
 }
-const middleName = ref()
+const middleName = ref<string>('Олегович')
 const state = reactive({
   ...initialState,
 })
@@ -135,13 +135,13 @@ const handleSubmit = async () => {
   const data = {
     firstname: state.firstName,
     lastname: state.lastName,
-    middlename: middleName.value,
+    middlename: middleName,
     phone: state.phone,
     date: fuckingDate.value,
     typepr: fuckingType.value,
   }
   try {
-    await $api('personals/applications/create/', { method: 'POST', body: data })
+    await $api('personals/applications/create/', { method: 'POST', title: 'title', body: data })
     v$.value.$reset()
     state.firstName = ''
     state.lastName = ''

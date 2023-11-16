@@ -49,7 +49,7 @@ class Applications(models.Model):
     )
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name[0]}. {self.middle_name[0]}. , {self.type_priem}'
+        return f'{self.lastname} {self.firstname[0]}. {self.middlename[0]}. , {self.typepr}'
 
     class Meta:
         verbose_name = _("Заявка")

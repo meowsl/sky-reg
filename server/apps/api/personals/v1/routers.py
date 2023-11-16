@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ApplicationsAPIView, ApplicationsCreateAPIView
+from .views import ApplicationsCreateAPIView, ApplicationsAPIView
 
 app_name = "personals"
 

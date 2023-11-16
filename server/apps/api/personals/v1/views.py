@@ -3,7 +3,7 @@ from .serializers import ApplicationsAPI
 from apps.api.personals.models import Applications
 
 class ApplicationsCreateAPIView(generics.CreateAPIView):
-  serializers_class = ApplicationsAPI
+  serializer_class = ApplicationsAPI
 
 class ApplicationsAPIView(generics.ListAPIView):
   queryset = Applications.objects.all()

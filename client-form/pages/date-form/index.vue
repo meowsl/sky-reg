@@ -11,7 +11,7 @@
       <VDivider />
     </div>
     <div class="form__content d-flex flex-column justify-start align-center mt-12 h-75">
-      <p class="text-h6 text-center text-black">Выберите дату и время</p>
+      <p class="<string>">Выберите дату и время</p>
       <VContainer class="w-100 mt-4 d-flex flex-row justify-space-between align-center">
         <VRow>
           <VCol cols="6">
@@ -132,6 +132,7 @@ const formattedDate = computed(() => {
   const year = date.value.getFullYear()
   return `${day}.${month}.${year}`
 })
+
 
 const addrForApi = ref()
 const nameKeys = Object.keys(names)
