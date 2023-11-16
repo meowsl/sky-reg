@@ -1,5 +1,8 @@
 import { fileURLToPath } from 'node:url'
 import vuetify from 'vite-plugin-vuetify'
+import Vue from 'vue';
+import Vuetify from 'vuetify';
+import VuetifyMask from 'vuetify-mask'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({

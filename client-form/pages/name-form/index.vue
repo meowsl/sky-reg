@@ -54,16 +54,31 @@
           </v-col>
         </VRow>
       </VForm>
-      <VBtn
-        variant="flat"
-        color="#BB1F1B"
-        height="65"
-        class="w-25"
-        @click="handleSubmit()"
+      <v-snackbar
+        :timeout="2000"
+        color="green-darken-1"
+        rounded="pill"
+        height="1200"
       >
-        <p class="text-h5 text-white text-capitalize font-weight-bold">Подтвердить</p>
-      </VBtn>
+        <template v-slot:activator="{ props }">
+          <VBtn
+            variant="flat"
+            color="#BB1F1B"
+            height="65"
+            class="w-25"
+            v-bind="props"
+            @click="handleSubmit()"
+          >
+            <p class="text-h5 text-white text-capitalize font-weight-bold">Подтвердить</p>
+          </VBtn>
+        </template>
+
+        Ваша заявка успешно отправлена!
+      </v-snackbar>
     </div>
+
+
+
     <div class="form__content-foot d-flex flex-column justify-center px-16">
       <VDivider />
       <div class="d-flex flex-row justify-start align-center text-start">
@@ -136,6 +151,7 @@ const handleSubmit = async () => {
     lastname: state.lastName,
     phone: state.phone,
     date: fuckingDate.value,
+    time: fuckingTime.value,
     typepr: fuckingType.value,
   }
   console.log(data)

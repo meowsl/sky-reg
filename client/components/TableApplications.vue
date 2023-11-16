@@ -13,6 +13,9 @@
           Дата записи
         </th>
         <th class="table__text-left ps-0">
+          Время
+        </th>
+        <th class="table__text-left ps-0">
           Номер
         </th>
         <th class="table__text-left ps-0">
@@ -31,6 +34,7 @@
       >
         <td class="ps-0">{{ app?.id }}</td>
         <td class="ps-0">{{ app?.date }}</td>
+        <td class="ps-0">{{ app?.time }}</td>
         <td class="ps-0">{{ app?.phone }}</td>
         <td class="ps-0">{{ app?.lastname }} {{ app?.firstname }}</td>
         <td class="ps-0">{{ app?.typepr }}</td>

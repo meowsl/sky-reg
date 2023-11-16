@@ -20,7 +20,6 @@ class Applications(models.Model):
       verbose_name=_("Фамилия")
     )
 
-
     phone = models.CharField(
       max_length=16,
       null=True,
@@ -31,7 +30,13 @@ class Applications(models.Model):
     date = models.DateField(
       blank = False,
       default=None,
-      verbose_name=_("Дата обращения")
+      verbose_name=_("Дата записи")
+    )
+
+    time = models.TimeField(
+      null=True,
+      default=None,
+      verbose_name=_("Время записи")
     )
 
     typepr = models.CharField(
@@ -47,5 +52,5 @@ class Applications(models.Model):
         return f'{self.lastname} {self.firstname[0]}., {self.typepr}'
 
     class Meta:
-        verbose_name = _("Заявка")
-        verbose_name_plural = _("Заявки")
+        verbose_name = _("Запись")
+        verbose_name_plural = _("Записи")
