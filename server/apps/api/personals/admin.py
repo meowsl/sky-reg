@@ -23,4 +23,4 @@ class PatientsCards(admin.ModelAdmin):
 
 @admin.register(Applications)
 class ApplicationsAdmin(admin.ModelAdmin):
-  list_display = ("first_name", "last_name", "type_priem")
+  list_display = ("firstname", "lastname", "typepr")

@@ -8,21 +8,21 @@ class Applications(models.Model):
       ('Обучение', 'Обучение')
     ]
 
-    last_name = models.CharField(
-      max_length=30,
-      blank=False,
-      verbose_name=_("Фамилия")
-    )
-
-    first_name = models.CharField(
+    firstname = models.CharField(
       max_length=30,
       blank=False,
       verbose_name=_("Имя")
     )
 
-    middle_name = models.CharField(
+    lastname = models.CharField(
       max_length=30,
       blank=False,
+      verbose_name=_("Фамилия")
+    )
+
+    middlename = models.CharField(
+      max_length=30,
+      blank=True,
       verbose_name=_("Отчество")
     )
 
@@ -33,13 +33,13 @@ class Applications(models.Model):
       verbose_name=_("Номер телефона")
     )
 
-    date_application = models.DateField(
+    date = models.DateField(
       blank = False,
       default=None,
       verbose_name=_("Дата обращения")
     )
 
-    type_priem = models.CharField(
+    typepr = models.CharField(
       max_length=9,
       choices=TYPE_PRIEM,
       default=None,
