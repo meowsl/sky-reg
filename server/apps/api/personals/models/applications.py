@@ -20,11 +20,6 @@ class Applications(models.Model):
       verbose_name=_("Фамилия")
     )
 
-    middlename = models.CharField(
-      max_length=30,
-      blank=True,
-      verbose_name=_("Отчество")
-    )
 
     phone = models.CharField(
       max_length=16,
@@ -49,7 +44,7 @@ class Applications(models.Model):
     )
 
     def __str__(self):
-        return f'{self.lastname} {self.firstname[0]}. {self.middlename[0]}. , {self.typepr}'
+        return f'{self.lastname} {self.firstname[0]}., {self.typepr}'
 
     class Meta:
         verbose_name = _("Заявка")

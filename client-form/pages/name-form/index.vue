@@ -113,7 +113,6 @@ const initialState = {
   lastName: '',
   phone: '',
 }
-const middleName = ref<string>('Олегович')
 const state = reactive({
   ...initialState,
 })
@@ -135,11 +134,11 @@ const handleSubmit = async () => {
   const data = {
     firstname: state.firstName,
     lastname: state.lastName,
-    middlename: middleName,
     phone: state.phone,
     date: fuckingDate.value,
     typepr: fuckingType.value,
   }
+  console.log(data)
   try {
     await $api('personals/applications/create/', { method: 'POST', title: 'title', body: data })
     v$.value.$reset()

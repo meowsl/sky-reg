@@ -10,9 +10,6 @@
           №
         </th>
         <th class="table__text-left ps-0">
-          Дата обращения
-        </th>
-        <th class="table__text-left ps-0">
           Дата записи
         </th>
         <th class="table__text-left ps-0">
@@ -33,11 +30,10 @@
         class=""
       >
         <td class="ps-0">{{ app?.id }}</td>
-        <td class="ps-0">{{ app?.dateApplication }}</td>
-        <td class="ps-0">{{ app?.dateApplication }}</td>
+        <td class="ps-0">{{ app?.date }}</td>
         <td class="ps-0">{{ app?.phone }}</td>
-        <td class="ps-0">{{ app?.lastName }} {{ app?.firstName }} {{ app?.middleName }}</td>
-        <td class="ps-0">{{ app?.typePriem }}</td>
+        <td class="ps-0">{{ app?.lastname }} {{ app?.firstname }}</td>
+        <td class="ps-0">{{ app?.typepr }}</td>
       </tr>
     </tbody>
 
@@ -54,29 +50,9 @@ const { $api } = useNuxtApp()
 const appsList = ref<Applications[]>([])
 const getApps = async () => {
   appsList.value = await $api<Applications[]>('personals/applications/list/')
+  console.log(appsList.value)
   // alert(JSON.stringify(appsList.value[0]['id']))
 }
 getApps()
-
-const selName = ref()
-const savedName = ref()
-
-const selType = ref()
-const savedType = ref()
-
-function getData(id) {
-  selName.value = JSON.stringify(appsList.value[id - 1]['lastName']).replace('"', ' ').replace('"', ' ') + JSON.stringify(appsList.value[id - 1]['firstName']).replace('"', ' ').replace('"', ' ')
-  selType.value = JSON.stringify(appsList.value[id - 1]['typePriem']).replace('"', ' ').replace('"', ' ')
-  savedName.value = selName.value
-  savedType.value = selType.value
-  console.log(savedName.value)
-  router.push({
-    path: '/city-page',
-    query: {
-      fio: savedName.value,
-      typePriem: savedType.value
-    },
-  })
-}
 
 </script>

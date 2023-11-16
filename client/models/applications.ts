@@ -1,9 +1,8 @@
 export interface Applications{
   id: number;
-  lastName: string;
-  firstName:string;
-  middleName:string;
+  lastname: string;
+  firstname:string;
   phone:string;
-  dateApplication:Date;
-  typePriem:string;
+  date:Date;
+  typepr:string;
 }
