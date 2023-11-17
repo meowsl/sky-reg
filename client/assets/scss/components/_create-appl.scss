@@ -1,0 +1,18 @@
+.input-date .v-field__input{
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: left !important;
+  align-items: center !important;
+}
+.v-ripple__container{
+  display: none !important;
+}
+
+.input-date{
+
+  &__btn{
+    padding: 0 !important;
+    border-radius: 0 0 2% 2% !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.486) !important;
+  }
+}
