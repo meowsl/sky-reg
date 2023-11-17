@@ -10,7 +10,7 @@
           to="/"
           class="bg-white d-flex align-center justify-center  text-h6"
         >
-          <p class="nav-text">Заявки</p>
+          <p class="nav-text">Записи</p>
         </NuxtLink>
         <NuxtLink
           to="/city-page"
