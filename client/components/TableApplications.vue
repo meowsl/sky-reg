@@ -1,6 +1,28 @@
 <template>
   <div class="search d-flex justify-end align-end py-4">
-    <VTextField class="search-field w-25" />
+    <VMenu>
+      <template v-slot:activator="{ props }">
+        <v-btn
+          v-bind="props"
+          color="black"
+          class="px-2"
+          icon
+        >
+          <VImg
+            :src="filter"
+            width="30"
+            height="30"
+          />
+        </v-btn>
+      </template>
+
+      <VCard
+        width="300"
+        class="pa-4"
+      >
+
+      </VCard>
+    </VMenu>
   </div>
   <VTable
     class="table"
@@ -52,6 +74,9 @@
 import { ref, onMounted } from 'vue'
 import { Applications } from 'models/applications'
 import { useAppoints } from '../composables'
+
+import filter from 'images/icon-filter.svg'
+import calendar from 'images/icon-calendar.svg'
 
 const { getApps, filteredDate, filteredType } = useAppoints()
 

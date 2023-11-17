@@ -71,11 +71,6 @@
           </VCol>
           <VCol cols="4">
             <p>Время записи</p>
-            <!-- <v-text-field
-              v-model="selTime"
-              :placeholder="time"
-            >
-            </v-text-field> -->
             <v-select
               v-model="time"
               :items="timeRange"
