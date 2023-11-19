@@ -8,6 +8,12 @@ class Applications(models.Model):
       ('Обучение', 'Обучение')
     ]
 
+    CITIES = [
+      ('Ростов-на-Дону', 'Ростов-на-Дону'),
+      ('Краснодар', 'Краснодар'),
+      ('Сочи', 'Сочи')
+    ]
+
     firstname = models.CharField(
       max_length=30,
       blank=False,
@@ -18,6 +24,13 @@ class Applications(models.Model):
       max_length=30,
       blank=False,
       verbose_name=_("Фамилия")
+    )
+
+    midname = models.CharField(
+      max_length=55,
+      null = True,
+      blank = True,
+      verbose_name=_('Отчество')
     )
 
     phone = models.CharField(
@@ -39,6 +52,7 @@ class Applications(models.Model):
       verbose_name=_("Время записи")
     )
 
+
     typepr = models.CharField(
       max_length=9,
       choices=TYPE_PRIEM,
@@ -48,9 +62,19 @@ class Applications(models.Model):
       verbose_name=_("Тип приема")
     )
 
+    city = models.CharField(
+      max_length=30,
+      choices=CITIES,
+      default=None,
+      null=True,
+      verbose_name=_("Город")
+    )
+
+
     def __str__(self):
         return f'{self.lastname} {self.firstname[0]}., {self.typepr}'
 
     class Meta:
+        unique_together = ('date', 'time', 'city')
         verbose_name = _("Запись")
         verbose_name_plural = _("Записи")

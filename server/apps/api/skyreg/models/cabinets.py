@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class Cabinets(models.Model):
 
+
+class Cabinets(models.Model):
     class City(models.IntegerChoices):
         ROSTOV = 1, _("Ростов-на-Дону")
         KRASNODAR = 2, _("Краснодар")

@@ -1,8 +1,7 @@
 <template>
   <VApp>
-    <NuxtLayout :name="layout">
+    <NuxtLayout>
       <NuxtPage />
-
     </NuxtLayout>
   </VApp>
 </template>
@@ -18,9 +17,5 @@ useHead({
     },
   ],
 })
-
-const layout = ref("default")
-
-const router = useRouter()
 
 </script>

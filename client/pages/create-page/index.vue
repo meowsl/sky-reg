@@ -1,5 +1,5 @@
 <template>
-  <div class="appointment-page d-flex mt-3 flex-column">
+  <div class="appointment-page d-flex justify-center align-center">
     <CreateAppl />
   </div>
 </template>

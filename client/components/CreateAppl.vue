@@ -5,7 +5,6 @@
       <v-form
         fast-fail
         validate-on="submit lazy"
-        @submit.prevent="handleSubmit"
         class="d-flex flex-column justify-center align-center"
       >
         <VRow class="">
@@ -17,8 +16,8 @@
             <v-text-field
               v-model="state.firstname"
               placeholder="Иван"
-              :rules="firstNameRules"
               :error-messages="v$.firstname.$errors.map(e => e.$message)"
+              color="teal"
             ></v-text-field>
           </VCol>
           <VCol cols="4">
@@ -26,8 +25,8 @@
             <v-text-field
               v-model="state.lastname"
               placeholder="Иванов"
-              :rules="lastNameRules"
               :error-messages="v$.lastname.$errors.map(e => e.$message)"
+              color="teal"
             ></v-text-field>
           </VCol>
           <VCol cols="4">
@@ -35,7 +34,7 @@
             <v-text-field
               v-model="midname"
               placeholder="Иванович"
-              :rules="midNameRules"
+              color="teal"
             ></v-text-field>
           </VCol>
           <VCol cols="4">
@@ -44,7 +43,19 @@
               v-model="state.phone"
               placeholder="+7(123)456-78-90"
               :error-messages="v$.phone.$errors.map(e => e.$message)"
+              color="teal"
             ></v-text-field>
+          </VCol>
+          <VCol cols="4">
+            <p>Город</p>
+            <v-select
+              v-model="city"
+              :items="cityList"
+              persistent-hint
+              return-object
+              single-line
+              color="teal"
+            ></v-select>
           </VCol>
           <VCol cols="4">
             <p>Дата записи</p>
@@ -52,6 +63,7 @@
               v-model="formattedDate"
               :placeholder="formattedDate"
               class="input-date"
+              color="teal"
             >
               <VBtn
                 variant="text"
@@ -74,21 +86,41 @@
             <v-select
               v-model="time"
               :items="timeRange"
-              label="Select"
               persistent-hint
               return-object
               single-line
+              color="teal"
             ></v-select>
           </VCol>
+          <VCol cols="4">
+            <p>Вид приема</p>
+            <VSelect
+              v-model="typepr"
+              :items="typelist"
+              persistent-hint
+              return-object
+              single-line
+              color="teal"
+            >
+            </VSelect>
+          </VCol>
+          <VCol
+            cols="4"
+            class="mx-auto"
+          >
+            <v-switch
+              v-model="isClient"
+              hide-details
+              inset
+              label="Посещали ранее?"
+              color="teal"
+              class="ps-3 w-auto"
+            ></v-switch>
+          </VCol>
+          <VCol cols="4">
+
+          </VCol>
         </VRow>
-        <v-switch
-          v-model="isClient"
-          hide-details
-          inset
-          label="Посещали ранее?"
-          color="green"
-          class="ps-3"
-        ></v-switch>
         <v-btn
           type="submit"
           variant="flat"
@@ -129,6 +161,15 @@
         </VBtn>
       </VCard>
     </VDialog>
+    <v-snackbar
+      :timeout="2000"
+      color="green-darken-1"
+      rounded="pill"
+      height="1200"
+      v-model="isSuccess"
+    >
+      <p>Запись успешно создана!</p>
+    </v-snackbar>
   </VContainer>
 </template>
 
@@ -136,25 +177,29 @@
 import { ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers, numeric } from '@vuelidate/validators'
+import { useAppoints } from '../composables'
 
 import calendar from 'images/icon-calendar.svg'
+import _sfc_main from 'vue3-lottie/dist/src/vue3-lottie'
 
 const { $api } = useNuxtApp()
-
+// Переменные для выбора даты
 const date = ref(new Date)
 const time = ref('10:00')
+// Переменная для выбора карточки клиента (в разработке)
 const isClient = ref(false)
+// Переменные для v-model
 const midname = ref('')
 const isCalendar = ref(false)
+const typelist = ['Первичный', 'Вторичный', 'Обучение']
+const typepr = ref('Первичный')
+const isSuccess = ref(false)
+const city = ref<string>('Ростов-на-Дону')
+const cityList = ['Ростов-на-Дону', 'Краснодар', 'Сочи']
 
-let timeRange: any[] = []
-for (let i = 20; i <= 37; i++) {
-  let hour = Math.floor(i / 2)
-  let minute = (i % 2 === 0) ? '00' : '30'
-  if (hour < 10 || (hour === 19 && minute === '30')) continue
-  timeRange.push(`${hour}:${minute}`)
-}
+const { filteredCityDate } = useAppoints()
 
+// Форматироварие даты
 const formattedDate = computed(() => {
   const day = date.value.getDate().toString().padStart(2, '0')
   const month = (date.value.getMonth() + 1).toString().padStart(2, '0')
@@ -162,42 +207,84 @@ const formattedDate = computed(() => {
   return `${day}.${month}.${year}`
 })
 
+// watch(formattedDate, newDate => {
+//   if (!newDate) return
+//   getTimes(city.value, newDate)
+// })
+
+// Переменные для инпутов
 const initialState = {
   firstname: '',
   lastname: '',
   phone: '',
 }
-
 const state = reactive({
   ...initialState,
 })
-
 const rules = {
   firstname: { required: helpers.withMessage('Это обязательное поле', required) },
   lastname: { required: helpers.withMessage('Это обязательное поле', required) },
-  phone: { required: helpers.withMessage('Это обязательное поле', required), numeric: helpers.withMessage('Пожалуйста, введите действительный номер телефона', numeric) },
+  phone: { required: helpers.withMessage('Это обязательное поле', required) },
 }
-
 const v$ = useVuelidate(rules, state)
 
+// Обработка формы и отправка данных в api
 const handleSubmit = async () => {
   const isFormCorrect = await v$.value.$validate()
-  if (isFormCorrect === false)
+  isSuccess.value = true
+  const middNa = midname.value
+  if (!isFormCorrect) {
     return
-  const data = {
-    firstname: state.firstname,
-    lastname: state.lastname,
-    phone: state.phone,
-    date: formattedDate.value,
-    time: time.value,
+  } else {
+    const data = {
+      firstname: state.firstname,
+      lastname: state.lastname,
+      midname: middNa,
+      phone: state.phone,
+      date: formattedDate.value,
+      time: time.value,
+      typepr: typepr.value,
+      city: city.value
+    }
+    await $api('personals/applications/create/', { method: 'POST', body: data })
+    v$.value.$reset()
+    state.firstname = ''
+    state.lastname = ''
+    midname.value = ''
+    state.phone = ''
+    date.value = new Date()
+    time.value = ''
+    typepr.value = ''
+    city.value = ''
+    isSuccess.value = false
   }
-  await $api('personals/applications/create/', { method: 'POST', body: data })
-  v$.value.$reset()
-  state.firstname = ''
-  state.lastname = ''
-  midname.value = ''
-  state.phone = ''
-  date.value = new Date()
-  time.value = ''
 }
+
+const timeRange = ref([]) // Make 'timeRange' a reactive property
+
+const getTimes = async (city: string, date: string) => {
+  const data = await filteredCityDate(city, date)
+  const disabledDate = []
+  for (const item of data) {
+    disabledDate.push(item['time'])
+  }
+  timeRange.value = [] // Clear the reactive array
+  for (let i = 20; i <= 37; i++) {
+    let hour = Math.floor(i / 2)
+    let minute = (i % 2 === 0) ? '00' : '30'
+    if (hour < 10 || (hour === 19 && minute === '30')) continue
+    if (disabledDate.includes(`${hour}:${minute}`)) continue
+    timeRange.value.push(`${hour}:${minute}`) // Push time slots to the reactive array
+  }
+}
+
+watch([city, formattedDate], ([newCity, newDate]) => {
+  if (!newCity || !newDate) return
+  getTimes(newCity, newDate)
+})
+
+onMounted(() => {
+  getTimes(city.value, formattedDate.value)
+});
+
 </script>

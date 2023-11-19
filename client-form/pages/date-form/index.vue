@@ -57,6 +57,7 @@
                         @click="selTime = item"
                         :disabled="!isTimeSlotAvailable(item)"
                         class="mx-2 my-2"
+                        color="#BB1F1B"
                       >{{ item }}</VBtn>
                     </div>
                   </VExpansionPanelText>
@@ -70,7 +71,7 @@
         variant="flat"
         color="#BB1F1B"
         height="65"
-        class="mt-16 w-25"
+        class="form-button mt-16 w-25"
         @click="saveDateTime()"
       >
         <p class="text-h5 text-white text-capitalize font-weight-bold">Продолжить</p>

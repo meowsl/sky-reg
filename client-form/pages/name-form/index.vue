@@ -24,19 +24,31 @@
           >
             <v-text-field
               v-model="state.firstName"
-              placeholder="Иван"
+              placeholder="Имя"
               :error-messages="v$.firstName.$errors.map(e => e.$message)"
               required
               hide-details
             ></v-text-field>
           </v-col>
           <v-col
-            cols="12"
+            cols="6"
             class="px-16"
           >
             <v-text-field
               v-model="state.lastName"
-              placeholder="Иванов"
+              placeholder="Фамилия"
+              :error-messages="v$.lastName.$errors.map(e => e.$message)"
+              hide-details
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col
+            cols="6"
+            class="px-16 "
+          >
+            <v-text-field
+              v-model="state.middleName"
+              placeholder="Отчество(необязательно)"
               :error-messages="v$.lastName.$errors.map(e => e.$message)"
               hide-details
               required
@@ -107,25 +119,21 @@ import backArrow from 'images/backArrow.svg'
 
 const router = useRouter()
 
-
 const fuckingType = ref()
 fuckingType.value = <string>router.currentRoute.value.query.type
-
 const fuckingCity = ref()
 fuckingCity.value = <string>router.currentRoute.value.query.city
-
 const fuckingDate = ref()
 fuckingDate.value = <string>router.currentRoute.value.query.date
-
 const fuckingTime = ref()
 fuckingTime.value = <string>router.currentRoute.value.query.time
-
 
 const { $api } = useNuxtApp()
 
 const initialState = {
   firstName: '',
   lastName: '',
+  middleName: '',
   phone: '',
 }
 const state = reactive({
@@ -149,10 +157,12 @@ const handleSubmit = async () => {
   const data = {
     firstname: state.firstName,
     lastname: state.lastName,
+    midname: state.middleName,
     phone: state.phone,
     date: fuckingDate.value,
     time: fuckingTime.value,
     typepr: fuckingType.value,
+    city: fuckingCity.value
   }
   console.log(data)
   try {
@@ -160,9 +170,11 @@ const handleSubmit = async () => {
     v$.value.$reset()
     state.firstName = ''
     state.lastName = ''
+    state.middleName = ''
     state.phone = ''
     fuckingDate.value = ''
     fuckingTime.value = ''
+    fuckingCity.value = ''
   } catch (error) {
     alert(error)
   }

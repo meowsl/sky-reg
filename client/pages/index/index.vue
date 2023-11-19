@@ -1,7 +1,9 @@
 <template>
   <div class="applications-page">
     <p class="text-h4 font-weight-bold">Записи</p>
-    <TableApplications class="mt-4" />
+    <VContainer class="px-16">
+      <TableApplications />
+    </VContainer>
   </div>
 </template>
 

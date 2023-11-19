@@ -24,3 +24,5 @@ class PatientsCards(admin.ModelAdmin):
 @admin.register(Applications)
 class ApplicationsAdmin(admin.ModelAdmin):
   list_display = ("firstname", "lastname", "typepr")
+
+

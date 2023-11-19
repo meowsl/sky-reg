@@ -21,10 +21,24 @@ export function useAppoints(){
     return appsList.value
   }
 
+  const filteredCity = async(city: string) =>{
+    const appsList = ref<Applications[]>([])
+    appsList.value = await $api<Applications[]>(`personals/applications/list/?city=${city}`)
+    return appsList.value
+  }
+
+  const filteredCityDate = async(city: string, date: string) =>{
+    const appsList = ref<Applications[]>([])
+    appsList.value = await $api<Applications[]>(`personals/applications/list/?city=${city}&date=${date}`)
+    return appsList.value
+  }
+
   return{
     getApps,
     filteredDate,
     filteredType,
+    filteredCity,
+    filteredCityDate
   }
 
 }

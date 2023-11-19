@@ -68,7 +68,7 @@ savedType.value = router.currentRoute.value.query.type
 const model = ref()
 
 function saveAddr() {
-  savedAddr.value = model.value.split(',')[0].split('-')[0]
+  savedAddr.value = model.value.split(',')[0]
   router.push({
     path: '/date-form',
     query: {
