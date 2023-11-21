@@ -12,6 +12,7 @@ DEFAULT_APPS = [
     "django.contrib.sitemaps",
     "import_export",
     "corsheaders",
+    "rest_framework_simplejwt",
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "django_cleanup.apps.CleanupConfig",

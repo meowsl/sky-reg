@@ -1,35 +1,45 @@
 <template>
-  <VContainer class="h-screen w-screen d-flex justify-center align-center">
-    <VForm>
+  <VContainer class="login h-screen w-screen d-flex justify-center align-center">
+    <VForm
+      class="login__form"
+      @submit.prevent="onSubmit()"
+    >
       <VCard
-        class="pa-16 d-flex flex-column"
+        class="login__card pa-8 d-flex flex-column"
         width="500"
+        elevation="24"
       >
         <v-card-title class="text-center text-h4">Вход в систему</v-card-title>
 
         <v-card-text class="mt-12">
           <v-text-field
-            v-model="login"
-            label="Логин"
+            v-model="state.login"
+            placeholder="Логин"
             required
+            color="teal"
             hint="Введите свой логин"
           ></v-text-field>
 
           <v-text-field
-            v-model="password"
-            label="Пароль"
+            class="mt-4"
+            v-model="state.password"
+            placeholder="Пароль"
             type="password"
             required
-            error="Пароль должен быть не менее 8 символов"
+            color="teal"
+            hint="Введите пароль"
           ></v-text-field>
         </v-card-text>
 
-        <v-card-actions class="d-flex justify-center">
+        <v-card-actions class="d-flex justify-center px-16">
           <v-btn
-            color="primary"
-            @click="submit"
+            class="pa-4 d-flex justify-center align-center"
+            variant="flat"
+            block
+            @click="handleSubmit"
+            color="teal-lighten-1"
           >
-            Войти
+            <p class="text-capitalize text-subtitle-1">Войти</p>
           </v-btn>
         </v-card-actions>
       </VCard>
@@ -39,7 +49,49 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, helpers } from '@vuelidate/validators'
+import type { AuthState } from 'client/models/auth'
 
-const login = ref('')
-const password = ref()
+const { $api } = useNuxtApp()
+const router = useRouter()
+
+const initialState = {
+  login: '',
+  password: '',
+}
+
+const state = reactive({
+  ...initialState,
+})
+
+const rules = {
+  login: { required: helpers.withMessage('Это обязательное поле', required) },
+  password: { required: helpers.withMessage('Это обязательное поле', required) },
+}
+const v$ = useVuelidate(rules, state)
+
+const handleSubmit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (!isFormCorrect) {
+    return
+  } else {
+    const data = {
+      'username': state.login,
+      'password': state.password,
+    }
+    const response = await $api('/auth/token/', { method: 'POST', body: data })
+    try {
+      localStorage.setItem('token', response['access'])
+      router.push({
+        path: '/'
+      })
+    } catch (error) {
+      alert(error)
+    }
+    v$.value.$reset()
+    state.login = ''
+    state.password = ''
+  }
+}
 </script>
