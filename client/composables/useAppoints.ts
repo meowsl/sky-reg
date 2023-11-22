@@ -3,6 +3,8 @@ import { api } from '../boot/axios'
 
 export function useAppoints(){
 
+  const router = useRouter()
+
   const getApps = async() => {
     const response = await api.get<Applications[]>('personals/applications/list')
     return response.data
@@ -27,10 +29,22 @@ export function useAppoints(){
     return response.data
   }
 
+  const createForm = async(data: FormData) => {
+    try{
+      const response = await api.post('personals/applications/create/', data)
+      return response.data
+    } catch(e){
+      console.log(e)
+    }
+  }
+
   return{
     getApps,
     filteredCity,
-    filteredDate, filteredType, filteredCityDate
+    filteredDate,
+    filteredType,
+    filteredCityDate,
+    createForm
   }
 
 }

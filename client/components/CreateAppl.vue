@@ -6,6 +6,7 @@
         fast-fail
         validate-on="submit lazy"
         class="d-flex flex-column justify-center align-center"
+        @submit.prevent="handleSubmit"
       >
         <VRow class="">
           <VCol
@@ -123,10 +124,10 @@
         </VRow>
         <v-btn
           type="submit"
+          @click="takeSucces"
           variant="flat"
           color="teal-lighten-1"
           class="mt-8"
-          @click="handleSubmit"
         >
           <p class="">Подтвердить запись</p>
         </v-btn>
@@ -162,11 +163,10 @@
       </VCard>
     </VDialog>
     <v-snackbar
+      v-model="isSuccess"
       :timeout="2000"
       color="green-darken-1"
       rounded="pill"
-      height="1200"
-      v-model="isSuccess"
     >
       <p>Запись успешно создана!</p>
     </v-snackbar>
@@ -178,11 +178,10 @@ import { ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers, numeric } from '@vuelidate/validators'
 import { useAppoints } from '../composables'
+import { api } from '../boot/axios'
 
 import calendar from 'images/icon-calendar.svg'
-import _sfc_main from 'vue3-lottie/dist/src/vue3-lottie'
 
-const { $api } = useNuxtApp()
 // Переменные для выбора даты
 const date = ref(new Date)
 const time = ref('10:00')
@@ -197,7 +196,7 @@ const isSuccess = ref(false)
 const city = ref<string>('Ростов-на-Дону')
 const cityList = ['Ростов-на-Дону', 'Краснодар', 'Сочи']
 
-const { filteredCityDate } = useAppoints()
+const { filteredCityDate, createForm } = useAppoints()
 
 // Форматироварие даты
 const formattedDate = computed(() => {
@@ -206,11 +205,6 @@ const formattedDate = computed(() => {
   const year = date.value.getFullYear()
   return `${day}.${month}.${year}`
 })
-
-// watch(formattedDate, newDate => {
-//   if (!newDate) return
-//   getTimes(city.value, newDate)
-// })
 
 // Переменные для инпутов
 const initialState = {
@@ -227,38 +221,6 @@ const rules = {
   phone: { required: helpers.withMessage('Это обязательное поле', required) },
 }
 const v$ = useVuelidate(rules, state)
-
-// Обработка формы и отправка данных в api
-const handleSubmit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  isSuccess.value = true
-  const middNa = midname.value
-  if (!isFormCorrect) {
-    return
-  } else {
-    const data = {
-      firstname: state.firstname,
-      lastname: state.lastname,
-      midname: middNa,
-      phone: state.phone,
-      date: formattedDate.value,
-      time: time.value,
-      typepr: typepr.value,
-      city: city.value
-    }
-    await $api('personals/applications/create/', { method: 'POST', body: data })
-    v$.value.$reset()
-    state.firstname = ''
-    state.lastname = ''
-    midname.value = ''
-    state.phone = ''
-    date.value = new Date()
-    time.value = ''
-    typepr.value = ''
-    city.value = ''
-    isSuccess.value = false
-  }
-}
 
 const timeRange = ref([]) // Make 'timeRange' a reactive property
 
@@ -285,6 +247,46 @@ watch([city, formattedDate], ([newCity, newDate]) => {
 
 onMounted(() => {
   getTimes(city.value, formattedDate.value)
-});
+})
 
+const takeSucces = async () => {
+  const isFormCorrect = await v$.value.$validate()
+  if (isFormCorrect === false)
+    return
+
+  isSuccess.value = true
+}
+
+const handleSubmit = async () => {
+  const isFormCorrect = await v$.value.$validate()
+
+  if (isFormCorrect === false)
+    return
+
+  const middNa = midname.value
+  const formData = new FormData()
+
+  formData.append('firstname', state.firstname)
+  formData.append('lastname', state.lastname)
+  formData.append('midname', middNa)
+  formData.append('phone', state.phone)
+  formData.append('date', formattedDate.value)
+  formData.append('time', time.value)
+  formData.append('typepr', typepr.value)
+  formData.append('city', city.value)
+  try {
+    await createForm(formData)
+    state.firstname = ''
+    state.lastname = ''
+    midname.value = ''
+    state.phone = ''
+    date.value = new Date()
+    time.value = ''
+    typepr.value = ''
+    city.value = ''
+    isSuccess.value = false
+  } catch (error) {
+    console.error(error)
+  }
+}
 </script>
