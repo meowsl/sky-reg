@@ -29,6 +29,12 @@ export function useAppoints(){
     return response.data
   }
 
+  const putVisit = async (id: number | string, visit: number, firstname: string, lastname: string) => {
+    const response = await api.patch(`personals/applications/update/${id}`, {firstname, lastname, visit })
+    location.reload()
+    return response.data
+  }
+
   const createForm = async(data: FormData) => {
     try{
       const response = await api.post('personals/applications/create/', data)
@@ -38,13 +44,20 @@ export function useAppoints(){
     }
   }
 
+  const generalFilter = async(city:string, date:string, type:string, ) =>{
+    const response = await api.get<Applications[]>(`personals/applications/list/?city=${city}&date=${date}&typepr=${type}`)
+    return response.data
+  }
+
   return{
     getApps,
     filteredCity,
     filteredDate,
     filteredType,
     filteredCityDate,
-    createForm
+    createForm,
+    generalFilter,
+    putVisit
   }
 
 }

@@ -5,13 +5,13 @@
       <v-form
         fast-fail
         validate-on="submit lazy"
-        class="d-flex flex-column justify-center align-center"
+        class="form d-flex flex-column justify-center align-center"
         @submit.prevent="handleSubmit"
       >
         <VRow class="">
           <VCol
             cols="4"
-            class="d-flex flex-column"
+            class="form__col"
           >
             <p class="">Имя</p>
             <v-text-field
@@ -21,7 +21,10 @@
               color="teal"
             ></v-text-field>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p class="">Фамилия</p>
             <v-text-field
               v-model="state.lastname"
@@ -30,7 +33,10 @@
               color="teal"
             ></v-text-field>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p class="">Отчество (необязательно)</p>
             <v-text-field
               v-model="midname"
@@ -38,7 +44,10 @@
               color="teal"
             ></v-text-field>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p>Контактный телефон</p>
             <v-text-field
               v-model="state.phone"
@@ -47,7 +56,10 @@
               color="teal"
             ></v-text-field>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p>Город</p>
             <v-select
               v-model="city"
@@ -58,7 +70,10 @@
               color="teal"
             ></v-select>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p>Дата записи</p>
             <v-text-field
               v-model="formattedDate"
@@ -82,7 +97,10 @@
               </VBtn>
             </v-text-field>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p>Время записи</p>
             <v-select
               v-model="time"
@@ -93,7 +111,10 @@
               color="teal"
             ></v-select>
           </VCol>
-          <VCol cols="4">
+          <VCol
+            cols="4"
+            class="form__col"
+          >
             <p>Вид приема</p>
             <VSelect
               v-model="typepr"

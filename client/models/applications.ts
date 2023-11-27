@@ -8,4 +8,5 @@ export interface Applications{
   time:TimeRanges
   typepr:string
   city: string
+  visit: number | string
 }

@@ -24,12 +24,37 @@
           cols="6"
           class="d-flex align-center justify-end"
         >
-          <VBtn icon>
-            <VImg
-              :src="icon"
-              min-width="60"
-            />
-          </VBtn>
+          <v-menu :location="bottom">
+            <template v-slot:activator="{ props }">
+              <v-btn
+                color="teal"
+                variat="text"
+                dark
+                icon
+                width="65"
+                height="65"
+                v-bind="props"
+              >
+                <VImg
+                  :src="icon"
+                  width="60"
+                  height="60"
+                />
+              </v-btn>
+            </template>
+
+            <v-list>
+              <v-list-item>
+                <VBtn
+                  variant="flat"
+                  color="teal"
+                  @click="logoutFunc"
+                >
+                  <p class="text-capitalize">Logout</p>
+                </VBtn>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </VCol>
       </VRow>
     </VContainer>
@@ -37,6 +62,23 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from '../stores/auth'
+
 import logo from 'images/logo.svg'
 import icon from 'images/icon-account.svg'
+
+const authStore = useAuthStore()
+const router = useRouter()
+
+const kekish = authStore.user
+
+const logoutFunc = async () => {
+  // try {
+  //   await authStore.userLogout()
+  // } catch (e) {
+  //   alert(e)
+  // }
+  localStorage.removeItem('token')
+  router.push({ path: '/login' })
+}
 </script>

@@ -13,7 +13,7 @@
 
         <v-card-text class="mt-12">
           <v-text-field
-            v-model="state.login"
+            v-model="login"
             placeholder="Логин"
             required
             color="teal"
@@ -22,7 +22,7 @@
 
           <v-text-field
             class="mt-4"
-            v-model="state.password"
+            v-model="password"
             placeholder="Пароль"
             type="password"
             required
@@ -36,7 +36,7 @@
             class="pa-4 d-flex justify-center align-center"
             variant="flat"
             block
-            @click="handleSubmit"
+            type="submit"
             color="teal-lighten-1"
           >
             <p class="text-capitalize text-subtitle-1">Войти</p>
@@ -49,49 +49,21 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useVuelidate } from '@vuelidate/core'
-import { required, helpers } from '@vuelidate/validators'
-import type { AuthState } from 'client/models/auth'
 
-const { $api } = useNuxtApp()
-const router = useRouter()
+import { useAuthStore } from '../stores/auth'
 
-const initialState = {
-  login: '',
-  password: '',
-}
+const authStore = useAuthStore()
 
-const state = reactive({
-  ...initialState,
-})
+const login = ref('')
+const password = ref('')
 
-const rules = {
-  login: { required: helpers.withMessage('Это обязательное поле', required) },
-  password: { required: helpers.withMessage('Это обязательное поле', required) },
-}
-const v$ = useVuelidate(rules, state)
-
-const handleSubmit = async () => {
-  const isFormCorrect = await v$.value.$validate()
-  if (!isFormCorrect) {
-    return
-  } else {
-    const data = {
-      'username': state.login,
-      'password': state.password,
-    }
-    const response = await $api('/auth/token/', { method: 'POST', body: data })
-    try {
-      localStorage.setItem('token', response['access'])
-      router.push({
-        path: '/'
-      })
-    } catch (error) {
-      alert(error)
-    }
-    v$.value.$reset()
-    state.login = ''
-    state.password = ''
+const onSubmit = async () => {
+  alert('is started')
+  try {
+    await authStore.userLogin(login.value.toLowerCase(), password.value)
+  } catch (error) {
+    alert(error)
+    console.error(error)
   }
 }
 </script>

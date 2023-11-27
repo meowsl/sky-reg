@@ -2,7 +2,6 @@
   <VTable
     class="table mt-10"
     fixed-header
-    height="300px"
   >
     <thead>
       <tr>
@@ -118,7 +117,7 @@
             </VCard>
           </VMenu>
         </th>
-        <th class="table__text-left without text-center text-black ps-0">
+        <th class="table__text-left text-center text-black ps-0">
           Город
           <VMenu :close-on-content-click="false">
             <template v-slot:activator="{ props }">
@@ -160,21 +159,42 @@
             </VCard>
           </VMenu>
         </th>
+        <th class="table__text-left without text-center text-black ps-0">
+          Посещение
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="app in schedule"
         :key="app.id"
-        class=""
+        :class="`type-` + app?.visit"
       >
         <td class="table__item text-center ps-0">{{ app?.id }}</td>
         <td class="table__item ps-0 text-center">{{ app?.date }}</td>
         <td class="table__item ps-0 text-center">{{ app?.time }}</td>
         <td class="table__item ps-0 text-center">{{ app?.phone }}</td>
-        <td class="table__item ps-0 text-center">{{ app?.lastname }} {{ app?.firstname[0] }} </td>
+        <td class="table__item ps-0 text-center">{{ app?.lastname }} {{ app?.firstname }} {{ app?.midname }} </td>
         <td class="table__item ps-0 text-center">{{ app?.typepr }}</td>
-        <td class="ps-0 text-center">{{ app?.city }}</td>
+        <td class="table__item ps-0 text-center">{{ app?.city }}</td>
+        <td class="ps-0 text-center">
+          <VBtn
+            class="text-h5 "
+            icon="mdi mdi-account-cancel-outline"
+            color="black"
+            variant="text"
+            size="40"
+            @click="resetVisit(app?.id, 2, app?.firstname, app?.lastname)"
+          />
+          <VBtn
+            class="text-h5 ms-4"
+            icon="mdi mdi-account-check-outline"
+            color="black"
+            variant="text"
+            size="40"
+            @click="resetVisit(app?.id, 1, app?.firstname, app?.lastname)"
+          />
+        </td>
       </tr>
     </tbody>
   </VTable>
@@ -194,7 +214,7 @@
         v-model="date"
         is-required
         :masks="{ weekdays: 'WW', data: 'DD-MM-YYYY' }"
-      />
+      />э
       <VBtn
         variant="flat"
         class="mt-4"
@@ -215,7 +235,7 @@ import { useAppoints } from '../composables'
 import filter from 'images/icon-filter.svg'
 import calendar from 'images/icon-calendar.svg'
 
-const { getApps, filteredDate, filteredType, filteredCity } = useAppoints()
+const { getApps, filteredDate, filteredType, filteredCity, putVisit } = useAppoints()
 
 const isCalendar = ref(false)
 
@@ -297,5 +317,13 @@ async function closeFilterCity() {
   list.value = await getApps()
   schedule.value = list.value
   return schedule.value
+}
+
+const resetVisit = async (id: string | number, visit: number, firstname: string, lastname: string) => {
+  try {
+    putVisit(id, visit, firstname, lastname)
+  } catch (e) {
+    console.log(e)
+  }
 }
 </script>

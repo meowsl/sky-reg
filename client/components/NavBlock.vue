@@ -24,12 +24,12 @@
         >
           <p class="nav-text">Создать запись</p>
         </NuxtLink>
-        <NuxtLink
+        <!-- <NuxtLink
           to="/cabinets-page"
           class="bg-white d-flex align-center justify-center text-h6 mt-1"
         >
           <p class="nav-text">Кабинеты</p>
-        </NuxtLink>
+        </NuxtLink> -->
       </nav>
     </VNavigationDrawer>
     <v-main style="height: 250px"></v-main>

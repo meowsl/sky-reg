@@ -14,6 +14,11 @@ class Applications(models.Model):
       ('Сочи', 'Сочи')
     ]
 
+    class Visit(models.IntegerChoices):
+      EMPTY = 0, _("Запись отсутствует")
+      YES = 1, _("Посетил")
+      NO = 2, _("Не посетил")
+
     firstname = models.CharField(
       max_length=30,
       blank=False,
@@ -68,6 +73,13 @@ class Applications(models.Model):
       default=None,
       null=True,
       verbose_name=_("Город")
+    )
+
+    visit = models.PositiveIntegerField(
+      choices=Visit.choices,
+      null=True,
+      default=0,
+      verbose_name=_("Посещение")
     )
 
 

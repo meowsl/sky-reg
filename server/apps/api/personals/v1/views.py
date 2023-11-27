@@ -12,3 +12,6 @@ class ApplicationsAPIView(generics.ListAPIView):
   filter_backends = [DjangoFilterBackend]
   filterset_fields = ['date', 'typepr', 'city']
 
+class ApplicationsUpdateAPIViev(generics.UpdateAPIView):
+  queryset = Applications.objects.all()
+  serializer_class = ApplicationsAPI
