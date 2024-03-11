@@ -58,11 +58,9 @@ const login = ref('')
 const password = ref('')
 
 const onSubmit = async () => {
-  alert('is started')
   try {
     await authStore.userLogin(login.value.toLowerCase(), password.value)
   } catch (error) {
-    alert(error)
     console.error(error)
   }
 }
