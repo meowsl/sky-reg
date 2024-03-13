@@ -5,7 +5,7 @@ export interface Applications{
   midname: string
   phone:string
   date:Date
-  time:TimeRanges
+  time: TimeRanges
   typepr:string
   city: string
   visit: number | string

@@ -16,7 +16,6 @@ services:
   backend:
     image: ${DOCKER_BACKEND_IMAGE}
     command: sh -c "
-      ./wait-for db:5432 &&
       poetry run task collectstatic --clear &&
       poetry run task migrate &&
       poetry run task defaultadmin &&

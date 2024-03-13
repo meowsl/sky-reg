@@ -61,7 +61,7 @@ const onSubmit = async () => {
   try {
     await authStore.userLogin(login.value.toLowerCase(), password.value)
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 </script>

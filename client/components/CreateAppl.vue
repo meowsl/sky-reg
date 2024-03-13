@@ -307,7 +307,7 @@ const handleSubmit = async () => {
     city.value = ''
     isSuccess.value = false
   } catch (error) {
-    console.error(error)
+    console.log(error)
   }
 }
 </script>

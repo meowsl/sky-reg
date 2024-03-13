@@ -7,19 +7,13 @@ declare module '@vue/runtime-core' {
   }
 }
 
-const getAuthToken = () => {
-  if (localStorage.getItem('token')) {
-    return `Bearer ${localStorage.getItem('token')}`
-  }
-}
-
 const api = axios.create({
-  baseURL: 'https://localhost:8000/api/v1/',
+  baseURL: 'https://sky-reg.ru/api/v1/',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: getAuthToken(),
   },
 })
+
 
 export { api }

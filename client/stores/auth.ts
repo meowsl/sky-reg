@@ -21,7 +21,7 @@ export const useAuthStore = defineStore('authStore', {
           this.router.push({ path: '/' })
         })
         .catch(e => {
-          console.error(e)
+          console.log(e)
         })
     },
     async userLogout() {
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('authStore', {
           this.router.push({ path: '/login' })
         })
         .catch(e => {
-          console.error(e)
+          console.log(e)
         })
     },
     clear() {
